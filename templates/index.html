@@ -1,8 +1,25 @@
 <title>Kurssikarhu</title>
 
 <h1>Kurssikarhu</h1>
-<h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
-<p>
-Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä
-<p>
-<button onclick="window.location.href = 'review'">ARVIOI KURSSI</button>
+    <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
+        <p>
+        {% if session.username %}
+        Olet kirjautunut nimellä {{ session.username }}
+        <p>
+        Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä
+        <p>
+            <button onclick="window.location.href = 'review'">ARVIOI KURSSI</button>
+        </p>
+            <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
+        {% else %}
+        Luo käyttäjätunnus:
+        <p>
+            <button onclick="window.location.href = 'createaccount'">Luo käyttäjätunnus</button>
+        </p>   
+        Jos sinulla on jo käyttäjätunnus voit kirjautua sisään:
+        <p>
+        <button onclick="window.location.href = 'loginpage'">Kirjaudu sisään</button>
+        </p>
+        {% endif %}
+    <h2>Viimeksi arvioidut kurssit</h2>
+    
