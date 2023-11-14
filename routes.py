@@ -54,6 +54,8 @@ def review():
 def result():
     course_name = request.form["course_name"]
     course_id = request.form["course_id"]
-    opettaja = request.form["opettaja"]
-    database_control.add_course(course_name, course_id)
-    return render_template("result.html", course_name=course_name, course_id=course_id, opettaja=opettaja)
+    teacher = request.form["opettaja"]
+    material = request.form["materiaali"]
+    workload = request.form["tyo"]
+    database_control.add_course(course_name, course_id, material, workload, teacher)
+    return render_template("result.html", course_name=course_name, course_id=course_id, teacher=teacher, workload=workload, material=material)

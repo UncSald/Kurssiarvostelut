@@ -28,13 +28,19 @@ def check_password(username, password):
         else:
             return 1
 
-def add_course(name, course_id):
-    sql = text("INSERT INTO Courses (name, course_id) VALUES (:name, :course_id)")
-    db.session.execute(sql, {"name":name, "course_id":course_id})
+def add_course(name, course_id, material, workload, teacher):
+    sql1 = text("INSERT INTO Courses (name, course_id) VALUES (:name, :course_id)")
+    sql2 = text("SELECT id FROM Courses WHERE name = :name")
+    sql3 = text("INSERT INTO Course_grading(course_id, material, workload, teacher) VALUES (:course_id, :material, :workload, :teacher)")
+    db.session.execute(sql1, {"name":name, "course_id":course_id})
+    db.session.commit()
+    new_id = db.session.execute(sql2, {"name":name}).fetchone()
+    db.session.commit()
+    db.session.execute(sql3, {"course_id":new_id[0], "material":material, "workload":workload, "teacher":teacher})
     db.session.commit()
 
 def get_courses():
-    sql = text("SELECT * FROM Courses")
+    sql = text("SELECT * FROM Courses C, Course_grading G WHERE C.id = G.course_id")
     result = db.session.execute(sql)
     courses = result.fetchall()
     return courses
