@@ -1,0 +1,16 @@
+<form action="/result" method="POST">
+    Syötä kurssin nimi ja tunnus:
+    <p>
+        <textarea name="course_name" rows="1" cols="50"></textarea>
+        <textarea name="course_id" rows="1" cols="10"></textarea>
+    <p>
+    Arvioi opettajan suoritus asteikolla 1(heikko)-5(erinomainen):
+    <p>
+    <input type="radio" name="opettaja" value="1"> välttävä
+    <input type="radio" name="opettaja" value="2"> tyydyttävä
+    <input type="radio" name="opettaja" value="3"> hyvä
+    <input type="radio" name="opettaja" value="4"> kiitettävä
+    <input type="radio" name="opettaja" value="5"> erinomainen
+    <p>
+    <input type="submit" value="Lähetä">
+    </form>
