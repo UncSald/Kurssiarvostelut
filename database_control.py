@@ -28,19 +28,52 @@ def check_password(username, password):
         else:
             return 1
 
-def add_course(name, course_id, material, workload, teacher):
-    sql1 = text("INSERT INTO Courses (name, course_id) VALUES (:name, :course_id)")
-    sql2 = text("SELECT id FROM Courses WHERE name = :name")
-    sql3 = text("INSERT INTO Course_grading(course_id, material, workload, teacher) VALUES (:course_id, :material, :workload, :teacher)")
-    db.session.execute(sql1, {"name":name, "course_id":course_id})
+def add_course(course_id, name):
+    name = name.upper()
+    course_id = course_id.upper()
+    sql = text("SELECT course_id FROM courses WHERE course_id = :course_id")
+    sql2 = text("INSERT INTO Courses (course_id, name) VALUES (:course_id, :name)")
+    course = db.session.execute(sql, {"course_id":course_id}).fetchone()
+    
+    if not course:
+        db.session.execute(sql2, {"course_id":course_id, "name":name})
+    
     db.session.commit()
-    new_id = db.session.execute(sql2, {"name":name}).fetchone()
+    
+
+def add_review(course_id, material, workload, teacher_name, teacher_grade):
+    course_id = course_id.upper()
+    sql = text("INSERT INTO Reviews (course, created) VALUES (:course_id, NOW())")
+    db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
-    db.session.execute(sql3, {"course_id":new_id[0], "material":material, "workload":workload, "teacher":teacher})
+    sql1 = text("SELECT MAX(id) FROM Reviews")
+    reference = db.session.execute(sql1).fetchone()[0]
+    sql2 = text("INSERT INTO Teachers (name, grade, review_id) VALUES (:name, :grade, :review_id)")
+    sql3 = text("INSERT INTO Material (grade, review_id) VALUES (:grade, :review_id)")
+    sql4 = text("INSERT INTO Workload (grade, review_id) VALUES (:grade, :review_id)")
+    db.session.execute(sql2, {"name":teacher_name, "grade":teacher_grade, "review_id":reference})
+    db.session.execute(sql3, {"grade":material, "review_id":reference})
+    db.session.execute(sql4, {"grade":workload, "review_id":reference})
     db.session.commit()
 
 def get_courses():
-    sql = text("SELECT * FROM Courses C, Course_grading G WHERE C.id = G.course_id")
+    sql = text("SELECT course_id, name FROM Courses ORDER BY course_id")
     result = db.session.execute(sql)
     courses = result.fetchall()
     return courses
+
+def latest_reviews():
+    sql = text("SELECT C.name FROM reviews R, Courses C WHERE R.course = C.course_id ORDER BY created DESC LIMIT 5;")
+    result = db.session.execute(sql)
+    latest_reviews = result.fetchall()
+    return latest_reviews
+
+def best_material():
+    sql = text("""SELECT C.name
+    FROM (SELECT W.grade AS w, R.course AS c FROM Workload W, Reviews R WHERE R.id = W.review_id) W, Courses C
+    WHERE C.course_id = W.c
+    GROUP BY C.course_id
+    ORDER BY (SUM(W.w)/COUNT(W.w)) DESC;""")
+    result = db.session.execute(sql)
+    material = result.fetchall()
+    return material

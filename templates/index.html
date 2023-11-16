@@ -22,4 +22,14 @@
         </p>
         {% endif %}
     <h2>Viimeksi arvioidut kurssit</h2>
-    
+    <hr>
+    {% for course in courses %}
+    {{ course[0] }}
+    <hr>
+    {% endfor %}
+    <h2>Kurssit joilla paras materiaali</h2>
+    <hr>
+    {% for course in material %}
+    {{ course[0] }}
+    <hr>
+    {% endfor %}

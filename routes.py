@@ -5,8 +5,9 @@ from flask import render_template, request, redirect, session
 # HOMEPAGE
 @app.route("/")
 def index():
-    courses = database_control.get_courses()
-    return render_template("index.html", courses=courses)
+    courses = database_control.latest_reviews()
+    material = database_control.best_material()
+    return render_template("index.html", courses=courses, material=material)
 
 @app.route("/createaccount")
 def createaccount():
@@ -54,8 +55,10 @@ def review():
 def result():
     course_name = request.form["course_name"]
     course_id = request.form["course_id"]
-    teacher = request.form["opettaja"]
-    material = request.form["materiaali"]
-    workload = request.form["tyo"]
-    database_control.add_course(course_name, course_id, material, workload, teacher)
-    return render_template("result.html", course_name=course_name, course_id=course_id, teacher=teacher, workload=workload, material=material)
+    teacher_name = request.form["teacher_name"]
+    teacher_grade = request.form["teacher_grade"]
+    material = request.form["material"]
+    workload = request.form["workload"]
+    database_control.add_course(course_id, course_name)
+    database_control.add_review(course_id, material, workload, teacher_name, teacher_grade)
+    return render_template("result.html", course_id=course_id, course_name=course_name, teacher=teacher_grade, workload=workload, material=material)
