@@ -1,5 +1,5 @@
-<form action="/result" method="POST">
-    Syötä kurssin nimi ja tunnus:
+<form action="/result" method="POST" onsubmit="return check(this)">
+    Syötä kurssin nimi ja tunnus Sisusta löytyvässä muodossa:
     <p>
         <textarea name="course_name" rows="1" cols="50"></textarea>
         <textarea name="course_id" rows="1" cols="10"></textarea>
@@ -35,4 +35,35 @@
         <input type="radio" name="workload" value="5"> ilmaiset nopat
     </p>
     <input type="submit" value="Lähetä">
-    </form>
+</form>
+
+<p>
+    <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
+</p>
+
+<script>
+    function check(form) {
+        if (1 > form.course_name.value.length > 100) {
+            alert("Kurssille antamasi nimi on liian pitkä");
+            return false;
+        }
+        if (6 > form.course_id.value.length > 10) {
+            alert("Kurssin tunnus on liian pitkä");
+            return false;
+        }
+        if (form.teacher_grade.value.length == 0) {
+            alert("Muista arvioida opettajan suoritus");
+            return false;
+        }
+        if (form.material.value.lenght == 0) {
+            alert("Muista arvioida kurssin materiaali");
+            return false;
+        }
+        if (form.workload.value.length == 0) {
+            alert("Muista arvoida kurssin työmäärä");
+            return false;
+        }
+        return true;
+    }
+</script>
+

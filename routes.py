@@ -1,44 +1,50 @@
 from app import app
 import database_control
+import users
+import stats
 from flask import render_template, request, redirect, session
 
 # HOMEPAGE
 @app.route("/")
 def index():
-    courses = database_control.latest_reviews()
-    material = database_control.best_material()
+    courses = stats.latest_reviews()
+    material = stats.best_material()
     return render_template("index.html", courses=courses, material=material)
 
-@app.route("/createaccount")
-def createaccount():
-    return render_template("createaccount.html")
 
-@app.route("/newaccount", methods = ["POST"])
+@app.route("/newaccount", methods = ["GET","POST"])
+
 def newaccount():
-    username = request.form["username"]
-    password = request.form["password"]
-    database_control.create_user(username, password)
-    return redirect("/loginpage")
+    if request.method == "GET":
+        return render_template("createaccount.html")
+    if request.method == "POST":  
+        username = request.form["username"]
+        password = request.form["password"]
+        users.create_user(username, password)
+        return redirect("/login")
 
 # LOGIN PAGE
-@app.route("/loginpage")
-def loginpage():
-    return render_template("loginpage.html")
+
 
 # LOGIN CHECKS RETURNING 0, 1, OR 2 DEPENDING ON USERNAME NOT FOUND(0),
 # WRONG PASSWORD(1) AND CORRECT USRNAME PASSWORD COMBO(2)
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    username = request.form["username"]
-    password = request.form["password"]
-    if database_control.check_password(username, password) == 2:
-        session["username"] = username
-    elif database_control.check_password(username, password) == 0:
-        print("no go m8")
-    elif database_control.check_password(username, password) == 1:
-        print("väärä salis")
     
-    return redirect("/")
+    if request.method == "GET":
+        return render_template("loginpage.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if users.check_password(username, password) == 2:
+            session["username"] = username
+            return redirect("/")
+        elif users.check_password(username, password) == 1:
+            return render_template("error.html", message="Väärä salasana")
+        elif users.check_password(username, password) == 0:
+            return render_template("error.html", message="Väärä tunnus")
+    
 
 #LOGOUT
 @app.route("/logout")
@@ -53,6 +59,7 @@ def review():
 
 @app.route("/result", methods=["POST"])
 def result():
+    
     course_name = request.form["course_name"]
     course_id = request.form["course_id"]
     teacher_name = request.form["teacher_name"]

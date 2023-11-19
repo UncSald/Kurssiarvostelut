@@ -12,22 +12,22 @@
         </p>
             <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
         {% else %}
-        Luo käyttäjätunnus:
+        Kirjaudu sisään:
         <p>
-            <button onclick="window.location.href = 'createaccount'">Luo käyttäjätunnus</button>
-        </p>   
-        Jos sinulla on jo käyttäjätunnus voit kirjautua sisään:
-        <p>
-        <button onclick="window.location.href = 'loginpage'">Kirjaudu sisään</button>
+            <button onclick="window.location.href = 'login'">Kirjaudu sisään</button>
         </p>
+        Jos sinulla ei ole käyttäjätunnusta voit luoda käyttäjätunnuksen:
+        <p>
+            <button onclick="window.location.href = 'newaccount'">Luo käyttäjätunnus</button>
+        </p>   
         {% endif %}
-    <h2>Viimeksi arvioidut kurssit</h2>
+    <h2>Tuoreimmat arvioinnit</h2>
     <hr>
     {% for course in courses %}
     {{ course[0] }}
     <hr>
     {% endfor %}
-    <h2>Kurssit joilla paras materiaali</h2>
+    <h2>TOP 5 materiaali</h2>
     <hr>
     {% for course in material %}
     {{ course[0] }}
