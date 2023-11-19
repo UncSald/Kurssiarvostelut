@@ -1,35 +1,46 @@
-<title>Kurssikarhu</title>
+<!DOCTYPE html>
 
-<h1>Kurssikarhu</h1>
-    <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
-        <p>
-        {% if session.username %}
-        Olet kirjautunut nimellä {{ session.username }}
-        <p>
-        Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä
-        <p>
-            <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
-        </p>
-            <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
-        {% else %}
-        Kirjaudu sisään:
-        <p>
-            <button onclick="window.location.href = 'login'">Kirjaudu sisään</button>
-        </p>
-        Jos sinulla ei ole käyttäjätunnusta voit luoda käyttäjätunnuksen:
-        <p>
-            <button onclick="window.location.href = 'newaccount'">Luo käyttäjätunnus</button>
-        </p>   
-        {% endif %}
-    <h2>Tuoreimmat arvioinnit</h2>
-    <hr>
-    {% for course in courses %}
-    {{ course[0] }}
-    <hr>
-    {% endfor %}
-    <h2>TOP 5 materiaali</h2>
-    <hr>
-    {% for course in material %}
-    {{ course[0] }}
-    <hr>
-    {% endfor %}
+<head>
+    <link rel="stylesheet" href="css\main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kurssikarhu</title>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1>Kurssikarhu</h1>
+    </div>
+        <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
+            <p>
+            {% if session.username %}
+            Olet kirjautunut nimellä {{ session.username }}
+            <p>
+            Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä
+            <p>
+                <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
+            </p>
+                <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
+            {% else %}
+            Kirjaudu sisään:
+            <p>
+                <button onclick="window.location.href = 'login'">Kirjaudu sisään</button>
+            </p>
+            Jos sinulla ei ole käyttäjätunnusta voit luoda käyttäjätunnuksen:
+            <p>
+                <button onclick="window.location.href = 'newaccount'">Luo käyttäjätunnus</button>
+            </p>   
+            {% endif %}
+        <h2>Tuoreimmat arvioinnit</h2>
+        <hr>
+        {% for course in courses %}
+            <li>{{ course[0] }}</li>
+        <hr>
+        {% endfor %}
+        <h2>TOP 5 materiaali</h2>
+        <hr>
+        {% for course in material %}
+        {{ course[0] }}
+        <hr>
+        {% endfor %}
+</body>

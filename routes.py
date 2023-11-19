@@ -2,6 +2,7 @@ from app import app
 import database_control
 import users
 import stats
+import secrets
 from flask import render_template, request, redirect, session
 
 # HOMEPAGE
@@ -39,6 +40,7 @@ def login():
 
         if users.check_password(username, password) == 2:
             session["username"] = username
+            session["csrf_token"] = secrets.token_hex(16)
             return redirect("/")
         elif users.check_password(username, password) == 1:
             return render_template("error.html", message="Väärä salasana")
@@ -50,6 +52,7 @@ def login():
 @app.route("/logout")
 def logout():
     del session["username"]
+    del session["csrf_token"]
     return redirect("/")
 
 # REVIEW FORM
@@ -60,6 +63,8 @@ def result():
     if request.method == "GET":
         return render_template("review.html")
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         course_name = request.form["course_name"]
         course_id = request.form["course_id"]
         teacher_name = request.form["teacher_name"]

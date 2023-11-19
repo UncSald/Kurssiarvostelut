@@ -25,3 +25,18 @@ def best_material():
     result = db.session.execute(sql)
     material = result.fetchall()
     return material
+
+def full_course_data():
+    pass
+
+def best_teacher():
+    pass
+
+def best_workload():
+    pass
+
+def best_overall():
+    pass
+
+def teacher_grades():
+    pass
