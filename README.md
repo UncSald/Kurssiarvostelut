@@ -1,16 +1,16 @@
 # Kurssiarvostelut
 Tsoha harjoitustyö
 
-Kusrssiarvostelusovelluksen tarkoitus on mahdollistaa anonyymi ja julkinen kurssipalautteen antaminen.
-Sovellukseen voi kirjautua, jolloin saa käyttöönsä oikeudet lisätä tietokantaan dataa. Ilman tunnusta sovelluksessa on mahdollista tarkastella tilastoja kursseista.
-Sovelluksen käyttäjät voivat syöttää kurssin nimen ja kurssitunnisteen tietokantaan. Sovellus tarkistaa onko kyseinen kurssi jo olemassa, jos ei niin kurssi lisätään tietokantaan.
-Käyttäjä voi antaa tietokannassa oleville kursseille palautetta. Palautteen antaminen toteutuu lomakkeella, jossa täytetään seuraavat kohdat:
-- Kurssin suoritusajankohta kenttiin vuosi ja periodi
-- Kurssin opettaja kenttiin nimi ja arvostelu asteikolla 1-5
-- Kurssin materiaali arvostelu asteikolla 1-5
-- Kurssin työmäärä arvostelu asteikolla 1-5
-- Ei-pakollinen avoin kurssipalaute tekstilaatikko, jonka merkkimäärä on rajattu
+Sovelluksen nimi on Kurssikarhu.
 
-Sovellus luo tilaston laskemalla kurssien saamien arvostelujen pohjalta kurssille arvosanan.
-Tilastoja voi rajata suoritusajankohdan tai opettajan mukaan. Esimerkiksi tilaston saa näyttämään tietyn kurssin arvosananeri ajankohtina tai tietyn opettajan opettamana.
-Sovellus antaa myös mahdollisuuden tarkastella kursseja yksitellen, jolloin kurssin tiedoista näkyvvät arvosteluiden keskiarvot ja jokainen yksittäinen arvostelu omassa laatikossaan (kuten esim. Google mapsissa).
+Kurssikarhusta löytyy tällä hetkellä seuraavanlaiset toiminnot:
+
+1. Kurssikarhuun voi luoda uniikin käyttäjätunnuksen.
+--- Käyttäjätunnuksen olemassaolo tarkistetaan listasta ennen uuden tunnuksen luomista.
+--- Virheilmoituksia en ole vielä luonut
+2. Käyttäjätunnuksella voi kirjautua sisään syöttämällä oikean salasanan.
+--- Salasanat ovat tallennettuina listaan hajautusarvoina.
+--- Listaan on tulossa myös käyttäjäoikeuksiin liittyvä sarake
+3. Kurssikarhun etusivulla on kaksi listaa, joista toinen ilmoittaa viimeiseksi arvostellut 5 kurssia ja toinen TOP 5 kurssit mateeriaalista saamansa arvosanan mukaan.
+--- Listauksissa seuraavaksi tavoitteena on luoda erillinen sivu jokaiselle kurssille.
+---Kurssisivulla olisi tarkoituksena näkyä kurssin kokonais arvosana, opettajat ja jokainen arvostelu listattuna erikseen kuten esim. Google mapsissa. 
