@@ -4,6 +4,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 # USER CREATION
 # CHECK WETHER USERNAME EXISTS OR NOT
+
 def create_user(username, password):
     sql1 = text("SELECT username FROM users WHERE username=:username")
     result = db.session.execute(sql1, {"username":username}).fetchone()

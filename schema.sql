@@ -4,3 +4,4 @@ CREATE TABLE Reviews (id SERIAL PRIMARY KEY, course varchar REFERENCES Courses, 
 CREATE TABLE Teachers (id SERIAL PRIMARY KEY, name TEXT, grade INTEGER, review_id INTEGER REFERENCES Reviews);
 CREATE TABLE Material (id SERIAL PRIMARY KEY, grade INTEGER, review_id INTEGER REFERENCES Reviews);
 CREATE TABLE Workload (id SERIAL PRIMARY KEY, grade INTEGER, review_id INTEGER REFERENCES Reviews);
+CREATE TABLE Review_messages (id SERIAL PRIMARY KEY, review_id INTEGER REFERENCES Reviews, message TEXT);

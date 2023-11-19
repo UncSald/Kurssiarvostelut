@@ -34,6 +34,10 @@
         <input type="radio" name="workload" value="4"> rento
         <input type="radio" name="workload" value="5"> ilmaiset nopat
     </p>
+    Avoin palaute (max 500 merkkiä)
+    <p>
+        <textarea name="message" rows="5" cols="50"></textarea>
+    </p>
     <input type="submit" value="Lähetä">
 </form>
 
@@ -47,8 +51,16 @@
             alert("Kurssille antamasi nimi on liian pitkä");
             return false;
         }
+        if (form.course_name.value.length == 0) {
+            alert("Olehyvä ja anna kurssille nimi");
+            return false;
+        }
         if (6 > form.course_id.value.length > 10) {
             alert("Kurssin tunnus on liian pitkä");
+            return false;
+        }
+        if (form.course_id.value.length == 0) {
+            alert("Ole hyvä ja anna kurssille oikea tunnus");
             return false;
         }
         if (form.teacher_grade.value.length == 0) {
@@ -61,6 +73,10 @@
         }
         if (form.workload.value.length == 0) {
             alert("Muista arvoida kurssin työmäärä");
+            return false;
+        }
+        if (form.message.value.length > 500) {
+            alert("Kurssille antamasi nimi on liian pitkä");
             return false;
         }
         return true;

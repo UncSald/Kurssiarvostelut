@@ -53,19 +53,20 @@ def logout():
     return redirect("/")
 
 # REVIEW FORM
-@app.route("/review")
-def review():
-    return render_template("review.html")
 
-@app.route("/result", methods=["POST"])
+@app.route("/result", methods=["GET", "POST"])
 def result():
     
-    course_name = request.form["course_name"]
-    course_id = request.form["course_id"]
-    teacher_name = request.form["teacher_name"]
-    teacher_grade = request.form["teacher_grade"]
-    material = request.form["material"]
-    workload = request.form["workload"]
-    database_control.add_course(course_id, course_name)
-    database_control.add_review(course_id, material, workload, teacher_name, teacher_grade)
-    return render_template("result.html", course_id=course_id, course_name=course_name, teacher=teacher_grade, workload=workload, material=material)
+    if request.method == "GET":
+        return render_template("review.html")
+    if request.method == "POST":
+        course_name = request.form["course_name"]
+        course_id = request.form["course_id"]
+        teacher_name = request.form["teacher_name"]
+        teacher_grade = request.form["teacher_grade"]
+        material = request.form["material"]
+        workload = request.form["workload"]
+        message = request.form["message"]
+        database_control.add_course(course_id, course_name)
+        database_control.add_review(course_id, material, workload, teacher_name, teacher_grade, message)
+        return render_template("result.html", course_id=course_id, course_name=course_name, teacher=teacher_grade, workload=workload, material=material)
