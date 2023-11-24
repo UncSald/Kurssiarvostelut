@@ -24,8 +24,8 @@ Kurssikarhusta löytyy tällä hetkellä seuraavanlaiset toiminnot:
 Ohjeet sovelluksen käynnistämiseen:
 1. Kloonaa repositorio koneellesi haluamaasi sijaintiin komennolla "git clone https://github.com/UncSald/Kurssiarvostelut.git"
 2. Luo .env tiedosto ja määritä sen sisältö seuraavanlaiseksi:
-- DATABASE_URL = <tietokannan-paikallinen-osoite>
-- SECRET_KEY = <salainen-avain>
+- DATABASE_URL = < tietokannan-paikallinen-osoite >
+- SECRET_KEY = < salainen-avain >
 3. Aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet seuraavilla komennoilla:
 - $ python3 -m venv venv
 - $ source venv/bin/activate
