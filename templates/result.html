@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 
-<title>Kurssikarhu</title>
-
-Arvioit kurssin {{ course_name }}, {{ course_id }}
-<p>
-    Annoit opettajalle arvosanaksi: {{ teacher }}
-</p>
-<p>
-    Annoit työmäärälle arvosanaksi: {{ workload }}
-</p>
-<p>
-    Annoit materiaalille arvosanaksi: {{ material }}
-</p>
+<head>
+    <link rel="stylesheet" href="/static/main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Kurssikarhu</title>
+</head>
+<body>
+<div class="header">
+    <h1>Kurssikarhu</h1>
+</div>
+<div>
+    <p>
+        Arvioit kurssin {{ course_name }}, {{ course_id }}
+        <br>
+        Annoit opettajalle arvosanaksi: {{ teacher }}
+        <br>
+        Annoit työmäärälle arvosanaksi: {{ material }}
+        <br>
+        Annoit materiaalille arvosanaksi: {{ workload }}
+    </p>
+</div>
 <button onclick="window.location.href = '/'">Palaa etusivulle</button>
+</body>

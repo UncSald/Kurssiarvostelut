@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="/static/coursepage.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Kurssikarhu</title>
+</head>
+
+<div class="header">
+    <h1>Kurssikarhu</h1>
+</div>
+<body>
+    <div>
+        <h2>{{ teacher }}</h2>
+        Kokonaisarvosana: {{ teacher_grade[0] }}
+    </div>
+    {% for data in teacher_data %}
+    <hr>
+        <p>
+            Opettajan kurssi: {{ data[2] }}
+            <br> Opettajan arvosanat: {{ data[1] }}
+        </p>
+        
+    </hr>
+    {% endfor %}
+    <p>
+    <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
+</body>

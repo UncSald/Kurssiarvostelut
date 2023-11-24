@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="css\main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Kurssikarhu</title>
 </head>
 
 
 <body>
     <div class="header">
-        <h1>Kurssikarhu</h1>
+        <h1>Kurssikarhu</h1> 
     </div>
+
+    <div>
         <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
+        
             <p>
             {% if session.username %}
-            Olet kirjautunut nimellä {{ session.username }}
-            <p>
-            Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä
+            Olet kirjautunut tunnuksella: "{{ session.username }}""
+            
+                <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
+                    <h3>Hae kurssia tunnuksella:</h3>
+                    <textarea name="course_id" rows="1" cols="20"></textarea>
+                    <input id="hae_kurssi" type="submit" value="Hae">
+                </form>
+                <form class = "teacher" action="/search_teacher" method="POST" onsubmit="return check2(this)">
+                    <h3>Hae opettajaa nimellä:</h3>
+                    <textarea name="teacher_name" rows="1" cols="20"></textarea>
+                    <input id="hae_opettaja" type="submit" value="Hae">
+                </form>
+            <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
             <p>
                 <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
             </p>
                 <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
+           
             {% else %}
             Kirjaudu sisään:
             <p>
@@ -31,16 +45,52 @@
                 <button onclick="window.location.href = 'newaccount'">Luo käyttäjätunnus</button>
             </p>   
             {% endif %}
+
         <h2>Tuoreimmat arvioinnit</h2>
-        <hr>
-        {% for course in courses %}
-            <li>{{ course[0] }}</li>
-        <hr>
-        {% endfor %}
+            <hr>
+                    {% for course in courses %}
+                    <li>{{ course[0] }}</li>
+                    {% endfor %}
+            </hr>
+                    
+        <h2>TOP 5 opettajat</h2>
+            <hr>
+                    {% for course in teacher %}
+                    <li>{{ course[0] }}</li>
+                    {% endfor %}
+            </hr>
+        
         <h2>TOP 5 materiaali</h2>
-        <hr>
-        {% for course in material %}
-        {{ course[0] }}
-        <hr>
-        {% endfor %}
+            <hr>
+                    {% for course in material %}
+                    <li>{{ course[0] }}</li>
+                    {% endfor %}
+            </hr>
+
+        <h2>TOP 5 helpoimmat kurssit</h2>
+            <hr>
+                    {% for course in workload %}
+                    <li>{{ course[0] }}</li>
+                    {% endfor %}
+            </hr>
+    </div>
 </body>
+
+<script>
+    function check1(form) {
+        if (form.course_id.value.length == 0) {
+            alert("Hakukenttä on tyhjä");
+            return false;
+        }
+
+        return true;
+    }
+    function check2(form) {
+
+        if (form.teacher_name.value.length == 0) {
+            alert("Hakukenttä on tyhjä");
+            return false;
+        }
+        return true;
+    }
+</script>

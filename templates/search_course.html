@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="/static/coursepage.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Kurssikarhu</title>
+</head>
+
+<div class="header">
+    <h1>Kurssikarhu</h1>
+</div>
+<body>
+    <div>
+        <h2>{{ courses[0][0] }}, {{ courses[0][1] }}</h2>
+    </div>
+    {% for course in courses %}
+    <hr>
+        <p> Kurssin opettaja: {{ course[2] }}
+            <br>Opettajalle annettu arvosana: {{ course[3] }}
+            <br>Materiaalille annettu arvosana: {{ course[4] }}
+            <br>Työmäärälle annettu arvosana: {{ course[5] }}
+        </p>
+        {% if course[6] %}
+        <p>{{ course[6] }}</p>
+        {% endif %}
+    </hr>
+    {% endfor %}
+    <p>
+    <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
+</body>
