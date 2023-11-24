@@ -22,14 +22,14 @@ Kurssikarhusta löytyy tällä hetkellä seuraavanlaiset toiminnot:
 - Arvostelulomakkeen tulokset tallentuvat taulukoihin.
 
 Ohjeet sovelluksen käynnistämiseen:
-1. Kloonaa repositorio koneellesi haluamaasi sijaintiin komennolla "git clone https://github.com/UncSald/Kurssiarvostelut.git"
+1. Kloonaa repositorio koneellesi haluamaasi sijaintiin komennolla ``` git clone https://github.com/UncSald/Kurssiarvostelut.git ```
 2. Luo .env tiedosto ja määritä sen sisältö seuraavanlaiseksi:
 - DATABASE_URL = < tietokannan-paikallinen-osoite >
 - SECRET_KEY = < salainen-avain >
 3. Aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet seuraavilla komennoilla:
-- $ python3 -m venv venv
-- $ source venv/bin/activate
-- $ pip install -r ./requirements.txt
-- $ psql < schema.sql
+- ``` $ python3 -m venv venv ```
+- ``` $ source venv/bin/activate ```
+- ``` $ pip install -r ./requirements.txt ```
+- ``` $ psql < schema.sql ```
 4. Käynnistä sovellus komennolla
-- $ flask run tai halutessasi flask --app app.py --debug run
+- ``` $ flask run ``` tai halutessasi ``` flask --app app.py --debug run ```
