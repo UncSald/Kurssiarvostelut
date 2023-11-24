@@ -1,0 +1,43 @@
+.header{
+    text-align: center;
+    background: rgb(169, 90, 206);
+    font-weight: bold;
+    padding: 2em 1em;
+    font-size: 2em;
+}
+body{
+    margin: auto;
+    margin-bottom: 2em;
+    max-width: 65em;
+    font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+    color: rgb(23, 0, 43);
+    background-image: url("https://media.tenor.com/OWavF62qCpEAAAAC/night-sky-tranquilo.gif");
+    background-size: 10%;
+    background-repeat:repeat   
+}
+div{
+    display: block;
+    border-radius: .3em;
+    background-color: rebeccapurple;
+    padding: .5em;
+}
+hr{
+    display: block;
+    background: rgb(169, 90, 206);
+}
+p{
+    padding: .5em;
+    border-radius: .3em;
+    background: purple;
+}
+button{
+    position:relative;
+    display: block;
+    width: 20%;
+    border-color: purple;
+    border-radius: 1em;
+    background-color: rgb(169, 90, 206);
+}
+button:hover{
+    background: rgb(148, 79, 180);
+}

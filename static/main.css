@@ -1,0 +1,89 @@
+.header {
+    text-align: center;
+    background-position: 12em;
+    background: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZ4d2N5cDk2Mm5icXU5bWNkamhqaXV4czU0ZTRodmo2bmxldmN3ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/xYaF6AN3tSdb7Ml9UI/giphy.gif");
+    background-color: rgb(169, 90, 206);
+    background-size: 25%;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    padding: 2em;
+    font-size: 2em;
+}
+body {
+    margin: auto;
+    margin-bottom: 2em;
+    max-width: 65em;
+    color: rgb(23, 0, 43);
+    font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+    background-image: url("https://media.tenor.com/OWavF62qCpEAAAAC/night-sky-tranquilo.gif");
+    background-size: 10%;
+    background-repeat:repeat   
+}
+div {
+    border-radius: .3em;
+    background-color: rebeccapurple;
+    padding: .5em;
+}
+form {
+    display: block;
+    margin: 1em;
+    border-radius: .3em;
+    width: 30%;
+    background-color: rgb(169, 90, 206);
+    padding: .4em;
+}
+form #hae_kurssi{
+    border-radius: .3em;
+    float:inline-end;
+    width: 20%;
+    background: rgb(169, 90, 206);
+}
+form #hae_kurssi:hover{
+    background: rgb(148, 79, 180);
+}
+form #hae_opettaja{
+    border-radius: .3em;
+    float:inline-end;
+    width: 20%;
+    background: rgb(169, 90, 206);
+}
+form #hae_opettaja:hover{
+    background: rgb(148, 79, 180);
+}
+form.course{
+    float: inline-start;
+}
+form.teacher{
+    float: inline-end;
+}
+textarea{
+    grid-column-start: 2;
+    border: 3px solid purple;
+    border-radius: 0.5em;
+    background: rgb(169, 90, 206);
+}
+hr {
+    counter-reset: section;
+    list-style-type: none;
+    }
+li{
+    border-radius: .1em;
+    list-style-type: none;
+    padding: .2em;
+    background: purple;
+}
+li::before {
+    counter-increment: section;
+    content: counters(section,".") " ";
+  }
+button{
+    position:relative;
+    display: block;
+    width: 20%;
+    border-color: purple;
+    border-radius: 1em;
+    background-color: rgb(169, 90, 206);
+}
+button:hover {
+    background-color: rgb(148, 79, 180);
+}
