@@ -17,6 +17,19 @@ Kurssikarhusta löytyy tällä hetkellä seuraavanlaiset toiminnot:
 --- Listauksissa seuraavaksi tavoitteena on luoda erillinen sivu jokaiselle kurssille.
 --- Kurssisivulla olisi tarkoituksena näkyä kurssin kokonais arvosana, opettajat ja jokainen arvostelu listattuna erikseen kuten esim. Google mapsissa.
 4. Kirjauduttuaan sisään käyttäjä voi arvioida kursseja erilliseltä sivulta löytyvällä lomakkeella.
---- Arvostelun kohteina ovat opettaja, materiaali ja vaaditun työn määrä.
---- Arvostelussa on myös avoin kenttä johon voi syöttää palautetta.
---- Arvostelulomakkeen tulokset tallentuvat taulukoihin.
+- Arvostelun kohteina ovat opettaja, materiaali ja vaaditun työn määrä.
+- Arvostelussa on myös avoin kenttä johon voi syöttää palautetta.
+- Arvostelulomakkeen tulokset tallentuvat taulukoihin.
+
+Ohjeet sovelluksen käynnistämiseen:
+1. Kloonaa repositorio koneellesi haluamaasi sijaintiin komennolla "git clone https://github.com/UncSald/Kurssiarvostelut.git"
+2. Luo .env tiedosto ja määritä sen sisältö seuraavanlaiseksi:
+- DATABASE_URL = <tietokannan-paikallinen-osoite>
+- SECRET_KEY = <salainen-avain>
+3. Aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet seuraavilla komennoilla:
+- $ python3 -m venv venv
+- $ source venv/bin/activate
+- $ pip install -r ./requirements.txt
+- $ psql < schema.sql
+4. Käynnistä sovellus komennolla
+- $ flask run tai halutessasi flask --app app.py --debug run
