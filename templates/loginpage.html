@@ -12,7 +12,8 @@
     <div>
     {% if session.username %}
         <h2>Olet jo kirjautunut sisään tunnuksella "{{ session.username }}"</h2>
-        <h2>Kirjaudu ulos tällä käyttäjällä voidaksesi kirjautua sisään toisella</h2>
+        <h3>Kirjaudu ulos tällä käyttäjällä voidaksesi kirjautua sisään toisella:</h3>
+        <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
         
     {% else %}
         <form action="/login" method="POST">
