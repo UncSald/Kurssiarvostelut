@@ -30,23 +30,21 @@ def newaccount():
         return redirect("/login")
 
 # LOGIN PAGE
-# LOGIN CHECKS RETURNING 0, 1, OR 2 DEPENDING ON USERNAME NOT FOUND(0),
-# WRONG PASSWORD(1) AND CORRECT USRNAME PASSWORD COMBO(2)
+# LOGIN CHECKS RETURNING TRUE OR FALSE
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error_message = "Käyttäjätunnus tai salasana on väärä"
     if request.method == "GET":
         return render_template("loginpage.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.check_password(username, password) == 2:
+        if users.check_password(username, password):
             session["username"] = username
             session["csrf_token"] = secrets.token_hex(16)
             return redirect("/")
-        elif users.check_password(username, password) == 1:
-            return render_template("error.html", message="Väärä salasana")
-        elif users.check_password(username, password) == 0:
-            return render_template("error.html", message="Väärä tunnus")
+        return render_template("loginpage.html", error_message=error_message)
+
     
 
 # LOGOUT
