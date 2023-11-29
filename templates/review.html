@@ -57,35 +57,35 @@
 <script>
     function check(form) {
 
-        if (1 > form.course_name.value.length > 100) {
+        if (form.course_name.value.length>100) {
             alert("Kurssille antamasi nimi on liian pitkä");
             return false;
         }
-        if (form.course_name.value.length == 0) {
+        if (form.course_name.value.length==0) {
             alert("Olehyvä ja anna kurssille nimi");
             return false;
         }
-        if (6 > form.course_id.value.length > 10) {
+        if (form.course_id.value.length>10) {
             alert("Kurssin tunnus on liian pitkä");
             return false;
         }
-        if (form.course_id.value.length == 0) {
+        if (form.course_id.value.length==0) {
             alert("Ole hyvä ja anna kurssille oikea tunnus");
             return false;
         }
-        if (form.teacher_grade.value.length == 0) {
+        if (form.teacher_grade.value.length==0) {
             alert("Muista arvioida opettajan suoritus");
             return false;
         }
-        if (form.material.value.lenght == 0) {
+        if (form.material.value.lenght==0) {
             alert("Muista arvioida kurssin materiaali");
             return false;
         }
-        if (form.workload.value.length == 0) {
+        if (form.workload.value.length==0) {
             alert("Muista arvoida kurssin työmäärä");
             return false;
         }
-        if (form.message.value.length > 500) {
+        if (form.message.value.length>500) {
             alert("Kurssille antamasi nimi on liian pitkä");
             return false;
         }
