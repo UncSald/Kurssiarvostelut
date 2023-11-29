@@ -84,6 +84,8 @@ def result():
 # ROUTE TO SEARCH RESULTS
 @app.route("/search_course", methods=["POST"])
 def search_course():
+    if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
     courses = request.form["course_id"]
     if stats.course_exists(courses):
         courses = stats.full_course_data(courses)
@@ -95,6 +97,8 @@ def search_course():
 
 @app.route("/search_teacher", methods=["POST"])
 def search_teacher():
+    if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
     teacher = request.form["teacher_name"].upper()
     if stats.teacher_exists(teacher):
         teacher_data = stats.teacher_data(teacher)
