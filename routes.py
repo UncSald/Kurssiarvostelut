@@ -18,7 +18,7 @@ def index():
 
 
 
-@app.route("/newaccount", methods = ["GET","POST"])
+@app.route("/newaccount", methods=["GET","POST"])
 def newaccount():
     if request.method == "GET":
         return render_template("createaccount.html")
