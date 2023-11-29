@@ -9,7 +9,7 @@
 <div class="header">
     <h1>Kurssikarhu</h1>
 </div>
-<form action="/newaccount" method="POST">
+<form action="/newaccount" method="POST" onsubmit="return check(this)">
     <h1>Luo käyttäjätunnus</h1>
     <p>Tunnus:<br>
     <input type="text" name="username"></p>
@@ -20,3 +20,17 @@
 <p>
     <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
 </p>    
+
+<script>
+    function check(form){
+        if (form.username.value.length==0) {
+            alert("Käyttäjätunnus ei voi olla tyhjä");
+            return false;
+        }
+        if (form.password.value.length==0) {
+            alert("Salasana ei voi olla tyhjä");
+            return false;
+        }
+        return true;
+    }
+</script>
