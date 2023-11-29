@@ -73,6 +73,7 @@ nav{
 }
 nav li{
     display: inline-block;
+    border-radius: .4em;
     padding: 1em;
     background-color: purple;
 }

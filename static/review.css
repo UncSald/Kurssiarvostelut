@@ -57,3 +57,22 @@ textarea{
 button:hover{
     background: rgb(148, 79, 180);
 }
+ol li{
+    background-color: purple;
+}
+nav{
+    text-align: center;
+    background-color: rgb(124, 39, 203);
+    border-radius: .5em;
+    padding: 1em;
+}
+nav li{
+    display: inline-block;
+    border-radius: .4em;
+    padding: 1em;
+    background-color: purple;
+}
+a{
+    padding: 3em;
+    color: black;
+}
