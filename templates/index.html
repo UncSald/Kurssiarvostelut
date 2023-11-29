@@ -12,7 +12,14 @@
         <h1>Kurssikarhu</h1> 
     </div>
 
-
+    <nav>
+        <ul>
+            <li><a href="/">Koti</a></li>
+            <li><a href="/review">Arviointilomake</a></li>
+            <li><a href="/login">Kirjaudu sisään</a></li>
+            <li><a href="/logout">Kirjaudu ulos</a></li>
+          </ul>
+    </nav>
 
     <div>
         <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
@@ -23,13 +30,7 @@
             <p>
                 <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
             </p>
-            <nav>
-                <ul>
-                    <li><a href="/">Koti</a></li>
-                    <li><a href="/login">Kirjaudu sisään</a></li>
-                    <li><a href="/review">Arviointilomake</a></li>
-                  </ul>
-            </nav>
+            
             <div>
                 <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
                     <h3>Hae kurssia tunnuksella:</h3>
@@ -60,32 +61,32 @@
             {% endif %}
 
         <h2>Tuoreimmat arvioinnit</h2>
-            <hr>
+            <ol>
                     {% for course in courses %}
                     <li>{{ course[0] }}</li>
                     {% endfor %}
-            </hr>
+            </ol>
                     
         <h2>TOP 5 opettajat</h2>
-            <hr>
+            <ol>
                     {% for course in teacher %}
                     <li>{{ course[0] }}</li>
                     {% endfor %}
-            </hr>
+            </ol>
         
         <h2>TOP 5 materiaali</h2>
-            <hr>
+            <ol>
                     {% for course in material %}
                     <li>{{ course[0] }}</li>
                     {% endfor %}
-            </hr>
+            </ol>
 
         <h2>TOP 5 helpoimmat kurssit</h2>
-            <hr>
+            <ol>
                     {% for course in workload %}
                     <li>{{ course[0] }}</li>
                     {% endfor %}
-            </hr>
+            </ol>
     </div>
 </body>
 

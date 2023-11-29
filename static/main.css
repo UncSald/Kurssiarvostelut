@@ -24,6 +24,11 @@ div {
     background-color: rebeccapurple;
     padding: 1em;
 }
+nav ul{
+    list-style: none;
+    display: inline-block;
+    padding: 1em;
+}
 form {
     float: none;
     margin: 1em;
@@ -57,19 +62,23 @@ textarea{
     width: 50%;
     background: rgb(169, 90, 206);
 }
-hr {
-    counter-reset: section;
-    list-style-type: none;
+ol li{
+    background-color: purple;
 }
-li {
-    border-radius: .1em;
-    list-style-type: none;
-    padding: .2em;
-    background: purple;
+nav{
+    text-align: center;
+    background-color: rgb(124, 39, 203);
+    border-radius: .5em;
+    padding: 1em;
 }
-li::before {
-    counter-increment: section;
-    content: counters(section,".") " ";
+nav li{
+    display: inline-block;
+    padding: 1em;
+    background-color: purple;
+}
+a{
+    padding: 3em;
+    color: black;
 }
 button{
     position: relative;
