@@ -22,11 +22,7 @@ def check_password(username, password):
     sql = text("SELECT id, password FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()    
-    if not user:
-        return 0
-    else:
-        hash_value = user.password
-        if check_password_hash(hash_value, password):
-            return 2
-        else:
-            return 1
+    if user:
+        return True
+    return False
+
