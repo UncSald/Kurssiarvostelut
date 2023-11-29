@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for kurssiarvostelut on 2023-11-25T10:28:03+02:00
+# fly.toml app configuration file generated for kurssikarhu on 2023-11-25T23:45:14+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "kurssiarvostelut"
+app = "kurssikarhu"
 primary_region = "arn"
 
 [build]

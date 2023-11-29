@@ -15,11 +15,14 @@ def index():
     return render_template("index.html", courses=courses, material=material, teacher=teacher, workload=workload)
 
 
+
+
 @app.route("/newaccount", methods = ["GET","POST"])
 def newaccount():
     if request.method == "GET":
         return render_template("createaccount.html")
     if request.method == "POST":
+        session.permanent = False
         username = request.form["username"]
         password = request.form["password"]
         users.create_user(username, password)
@@ -35,7 +38,6 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-
         if users.check_password(username, password) == 2:
             session["username"] = username
             session["csrf_token"] = secrets.token_hex(16)
@@ -53,6 +55,8 @@ def logout():
     del session["username"]
     del session["csrf_token"]
     return redirect("/")
+
+
 
 # REVIEW FORM
 @app.route("/result", methods=["GET", "POST"])
@@ -73,6 +77,8 @@ def result():
         database_control.add_review(course_id, material, workload, teacher_name, teacher_grade, message)
         return render_template("result.html", course_id=course_id, course_name=course_name, teacher=teacher_grade, workload=workload, material=material)
 
+
+
 # ROUTE TO SEARCH RESULTS
 @app.route("/search_course", methods=["POST"])
 def search_course():
@@ -81,6 +87,9 @@ def search_course():
         courses = stats.full_course_data(courses)
         return render_template("search_course.html", courses=courses)
     return redirect("/")
+
+    
+
 
 @app.route("/search_teacher", methods=["POST"])
 def search_teacher():
