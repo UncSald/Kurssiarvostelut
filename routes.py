@@ -3,7 +3,7 @@ import database_control
 import users
 import stats
 import secrets
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, abort
 
 # HOMEPAGE
 @app.route("/")
@@ -51,6 +51,8 @@ def login():
 # DELETE SESSIONS
 @app.route("/logout")
 def logout():
+    if not session:
+        abort(403)
     del session["username"]
     del session["csrf_token"]
     return redirect("/")
@@ -60,6 +62,8 @@ def logout():
 # REVIEW FORM
 @app.route("/review", methods=["GET", "POST"])
 def result():
+    if not session:
+        abort(403)
     if request.method == "GET":
         return render_template("review.html")
     if request.method == "POST":
