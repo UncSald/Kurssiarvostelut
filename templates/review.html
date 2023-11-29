@@ -15,9 +15,12 @@
         <ul>
             <li><a href="/">Koti</a></li>
             <li><a href="/review">Arviointilomake</a></li>
-            <li><a href="/login">Kirjaudu sisään</a></li>
-            <li><a href="/logout">Kirjaudu ulos</a></li>
-        </ul>
+            {% if session.username %}
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+            {% else %}
+                <li><a href="/login">Kirjaudu sisään</a></li>
+            {% endif %}
+          </ul>
     </nav>
     <form action="/review" method="POST" onsubmit="return check(this)">
         <h3>Syötä kurssin nimi Sisusta löytyvässä muodossa:</h3>

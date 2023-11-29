@@ -16,8 +16,11 @@
         <ul>
             <li><a href="/">Koti</a></li>
             <li><a href="/review">Arviointilomake</a></li>
-            <li><a href="/login">Kirjaudu sisään</a></li>
-            <li><a href="/logout">Kirjaudu ulos</a></li>
+            {% if session.username %}
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+            {% else %}
+                <li><a href="/login">Kirjaudu sisään</a></li>
+            {% endif %}
           </ul>
     </nav>
 
@@ -82,7 +85,7 @@
                     {% endfor %}
             </ol>
 
-        <h2>TOP 5 helpoimmat kurssit</h2>
+        <h2>TOP 5 vähiten työläät kurssit</h2>
             <ol>
                     {% for course in workload %}
                     <li>{{ course[0] }}</li>
