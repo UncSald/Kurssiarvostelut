@@ -12,6 +12,8 @@
         <h1>Kurssikarhu</h1> 
     </div>
 
+
+
     <div>
         <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
         
@@ -21,6 +23,13 @@
             <p>
                 <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
             </p>
+            <nav>
+                <ul>
+                    <li><a href="/">Koti</a></li>
+                    <li><a href="/login">Kirjaudu sisään</a></li>
+                    <li><a href="/review">Arviointilomake</a></li>
+                  </ul>
+            </nav>
             <div>
                 <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
                     <h3>Hae kurssia tunnuksella:</h3>
@@ -35,7 +44,7 @@
             </div>
             <div>
                 <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
-                        <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
+                        <button onclick="window.location.href = 'review'">ARVIOI KURSSI</button>
                     
             </div>
             
