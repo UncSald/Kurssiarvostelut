@@ -12,7 +12,8 @@ def index():
     material = stats.best_material()
     teacher = stats.best_teacher()
     workload = stats.best_workload()
-    return render_template("index.html", courses=courses, material=material, teacher=teacher, workload=workload)
+    return render_template("index.html", courses=courses, material=material,\
+         teacher=teacher, workload=workload)
 
 
 
@@ -75,7 +76,8 @@ def result():
         message = request.form["message"]
         database_control.add_course(course_id, course_name)
         database_control.add_review(course_id, material, workload, teacher_name, teacher_grade, message)
-        return render_template("result.html", course_id=course_id, course_name=course_name, teacher=teacher_grade, workload=workload, material=material)
+        return render_template("result.html", course_id=course_id, course_name=course_name,\
+             teacher=teacher_grade, workload=workload, material=material)
 
 
 
@@ -97,5 +99,6 @@ def search_teacher():
     if stats.teacher_exists(teacher):
         teacher_data = stats.teacher_data(teacher)
         teacher_grade = stats.teacher_grades(teacher)
-        return render_template("search_teacher.html", teacher=teacher, teacher_data=teacher_data, teacher_grade=teacher_grade)
+        return render_template("search_teacher.html", teacher=teacher,\
+             teacher_data=teacher_data, teacher_grade=teacher_grade)
     return redirect("/")
