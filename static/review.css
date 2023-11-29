@@ -15,9 +15,7 @@ body {
     background-size: 10%;
     background-repeat:repeat;   
     border-radius: 1em;
-
 }
-
 form{
     border-radius: 1em;
     display: grid;

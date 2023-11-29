@@ -17,24 +17,28 @@
         
             <p>
             {% if session.username %}
-            Olet kirjautunut tunnuksella: "{{ session.username }}""
-            
+            Olet kirjautunut tunnuksella: "{{ session.username }}"
+            <p>
+                <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
+            </p>
+            <div>
                 <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
                     <h3>Hae kurssia tunnuksella:</h3>
                     <textarea name="course_id" rows="1" cols="20"></textarea>
-                    <input id="hae_kurssi" type="submit" value="Hae">
+                    <input id="fetch_course" type="submit" value="Hae">
                 </form>
                 <form class = "teacher" action="/search_teacher" method="POST" onsubmit="return check2(this)">
                     <h3>Hae opettajaa nimellä:</h3>
                     <textarea name="teacher_name" rows="1" cols="20"></textarea>
-                    <input id="hae_opettaja" type="submit" value="Hae">
+                    <input id="fetch_teacher" type="submit" value="Hae">
                 </form>
-            <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
-            <p>
-                <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
-            </p>
-                <button onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
-           
+            </div>
+            <div>
+                <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
+                        <button onclick="window.location.href = 'result'">ARVIOI KURSSI</button>
+                    
+            </div>
+            
             {% else %}
             Kirjaudu sisään:
             <p>
