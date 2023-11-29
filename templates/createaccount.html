@@ -6,20 +6,41 @@
     <title>Kurssikarhu</title>
 </head>
 
-<div class="header">
-    <h1>Kurssikarhu</h1>
-</div>
-<form action="/newaccount" method="POST" onsubmit="return check(this)">
-    <h1>Luo käyttäjätunnus</h1>
-    <p>Tunnus:<br>
-    <input type="text" name="username"></p>
-    <p>Salasana:<br>
-    <input type="password" name="password"></p>
-    <input type="submit" value="Kirjaudu">
-</form>
-<p>
-    <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
-</p>    
+<body>
+    
+    <div class="header">
+        <h1>Kurssikarhu</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Koti</a></li>
+            <li><a href="/review">Arviointilomake</a></li>
+            {% if session.username %}
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+            {% else %}
+                <li><a href="/login">Kirjaudu sisään</a></li>
+                <li><a href="/createaccount">Luo käyttäjätunnus</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div>
+    <form action="/newaccount" method="POST" onsubmit="return check(this)">
+        <h1>Luo käyttäjätunnus</h1>
+        <p>Tunnus:<br>
+        <input type="text" name="username"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+    </form>
+    <p>
+        <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
+    </p>    
+    </div>
+
+</body>
+
+
+
 
 <script>
     function check(form){

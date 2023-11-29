@@ -20,6 +20,7 @@
                 <li><a href="/logout">Kirjaudu ulos</a></li>
             {% else %}
                 <li><a href="/login">Kirjaudu sisään</a></li>
+                <li><a href="/createaccount">Luo käyttäjätunnus</a></li>
             {% endif %}
           </ul>
     </nav>
@@ -95,6 +96,7 @@
 </body>
 
 <script>
+    // 
     function check1(form) {
         if (form.course_id.value.length==0) {
             alert("Hakukenttä on tyhjä");
@@ -105,7 +107,7 @@
 
 
 
-    
+
     function check2(form) {
         if (form.teacher_name.value.length==0) {
             alert("Hakukenttä on tyhjä");
