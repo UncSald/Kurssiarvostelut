@@ -59,7 +59,7 @@ def logout():
 
 
 # REVIEW FORM
-@app.route("/result", methods=["GET", "POST"])
+@app.route("/review", methods=["GET", "POST"])
 def result():
     if request.method == "GET":
         return render_template("review.html")
