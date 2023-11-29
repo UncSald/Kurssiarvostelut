@@ -6,40 +6,49 @@
     <title>Kurssikarhu</title>
 </head>
 
-<div class="header">
-    <h1>Kurssikarhu</h1>
-</div>
+
 <body>
-<form action="/review" method="POST" onsubmit="return check(this)">
-    <h3>Syötä kurssin nimi Sisusta löytyvässä muodossa:</h3>
-        <textarea name="course_name" rows="1" cols="50"></textarea>
-    <h3>Syötä kurssin tunnus (Esim. TKT10002) Sisusta löytyvässä muodossa:</h3>
-        <textarea name="course_id" rows="1" cols="10"></textarea>
-    <h3>Syöta opettajan nimi ja arvioi suoritus:</h3>
-        <textarea name="teacher_name" rows="1" cols="30"></textarea>
-        <input type="radio" name="teacher_grade" value="1"> välttävä
-        <input type="radio" name="teacher_grade" value="2"> tyydyttävä
-        <input type="radio" name="teacher_grade" value="3"> hyvä
-        <input type="radio" name="teacher_grade" value="4"> kiitettävä
-        <input type="radio" name="teacher_grade" value="5"> erinomainen
-        <h3>Arvioi kurssin materiaali:</h3>
-        <input type="radio" name="material" value="1"> hyödytön
-        <input type="radio" name="material" value="2"> kohtalainen
-        <input type="radio" name="material" value="3"> materiaali auttaa kurssilla
-        <input type="radio" name="material" value="4"> materiaali edistää oppimista
-        <input type="radio" name="material" value="5"> kurssin voisi suorittaa vain materiaalia seuraamalla
-        <h3>Arvioi kurssin työmäärä:</h3>
-        <input type="radio" name="workload" value="1"> aivan liikaa
-        <input type="radio" name="workload" value="2"> liikaa
-        <input type="radio" name="workload" value="3"> sopivasti tekemistä
-        <input type="radio" name="workload" value="4"> rento
-        <input type="radio" name="workload" value="5"> ilmaiset nopat
-        <h3> Avoin palaute (max 500 merkkiä)</h3>
-        <textarea name="message" rows="5" cols="50"></textarea>
-    
-        <input id="Send" type="submit" value="Lähetä">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
+    <div class="header">
+        <h1>Kurssikarhu</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Koti</a></li>
+            <li><a href="/review">Arviointilomake</a></li>
+            <li><a href="/login">Kirjaudu sisään</a></li>
+            <li><a href="/logout">Kirjaudu ulos</a></li>
+        </ul>
+    </nav>
+    <form action="/review" method="POST" onsubmit="return check(this)">
+        <h3>Syötä kurssin nimi Sisusta löytyvässä muodossa:</h3>
+            <textarea name="course_name" rows="1" cols="50"></textarea>
+        <h3>Syötä kurssin tunnus (Esim. TKT10002) Sisusta löytyvässä muodossa:</h3>
+            <textarea name="course_id" rows="1" cols="10"></textarea>
+        <h3>Syöta opettajan nimi ja arvioi suoritus:</h3>
+            <textarea name="teacher_name" rows="1" cols="30"></textarea>
+            <input type="radio" name="teacher_grade" value="1"> välttävä
+            <input type="radio" name="teacher_grade" value="2"> tyydyttävä
+            <input type="radio" name="teacher_grade" value="3"> hyvä
+            <input type="radio" name="teacher_grade" value="4"> kiitettävä
+            <input type="radio" name="teacher_grade" value="5"> erinomainen
+            <h3>Arvioi kurssin materiaali:</h3>
+            <input type="radio" name="material" value="1"> hyödytön
+            <input type="radio" name="material" value="2"> kohtalainen
+            <input type="radio" name="material" value="3"> materiaali auttaa kurssilla
+            <input type="radio" name="material" value="4"> materiaali edistää oppimista
+            <input type="radio" name="material" value="5"> kurssin voisi suorittaa vain materiaalia seuraamalla
+            <h3>Arvioi kurssin työmäärä:</h3>
+            <input type="radio" name="workload" value="1"> aivan liikaa
+            <input type="radio" name="workload" value="2"> liikaa
+            <input type="radio" name="workload" value="3"> sopivasti tekemistä
+            <input type="radio" name="workload" value="4"> rento
+            <input type="radio" name="workload" value="5"> ilmaiset nopat
+            <h3> Avoin palaute (max 500 merkkiä)</h3>
+            <textarea name="message" rows="5" cols="50"></textarea>
+        
+            <input id="Send" type="submit" value="Lähetä">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </form>
     <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
 </body>
 <script>
