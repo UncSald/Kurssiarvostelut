@@ -1,5 +1,5 @@
-from db import db
 from sqlalchemy.sql import text
+from db import db
 
 
 
@@ -12,12 +12,12 @@ def add_course(course_id, name):
     sql = text("SELECT course_id FROM courses WHERE course_id = :course_id")
     sql2 = text("INSERT INTO Courses (course_id, name) VALUES (:course_id, :name)")
     course = db.session.execute(sql, {"course_id":course_id}).fetchone()
-    
+
     if not course:
         db.session.execute(sql2, {"course_id":course_id, "name":name})
-    
+
     db.session.commit()
-    
+
 # FUNCTION TO ADD REVIEW TO DATABASE
 # TABLE REVIEW CONNECTED TO COURSES TABLE
 # TABLES TEACHERS, MATERIAL, AND WORKLOAD CONNECTED TO REVIEWS
