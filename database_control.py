@@ -21,7 +21,7 @@ def add_course(course_id, name):
 # FUNCTION TO ADD REVIEW TO DATABASE
 # TABLE REVIEW CONNECTED TO COURSES TABLE
 # TABLES TEACHERS, MATERIAL, AND WORKLOAD CONNECTED TO REVIEWS
-def add_review(course_id, material, workload, teacher_name, teacher_grade, message):
+def add_review(course_id, review_data):
     course_id = course_id.upper()
     teacher_name = teacher_name.upper()
     sql = text("INSERT INTO Reviews (course, created) VALUES (:course_id, NOW())")
@@ -33,9 +33,9 @@ def add_review(course_id, material, workload, teacher_name, teacher_grade, messa
     sql3 = text("INSERT INTO Material (grade, review_id) VALUES (:grade, :review_id)")
     sql4 = text("INSERT INTO Workload (grade, review_id) VALUES (:grade, :review_id)")
     sql5 = text("INSERT INTO Review_messages (review_id, message) VALUES (:review_id, :message)")
-    db.session.execute(sql2, {"name":teacher_name, "grade":teacher_grade, "review_id":reference})
-    db.session.execute(sql3, {"grade":material, "review_id":reference})
-    db.session.execute(sql4, {"grade":workload, "review_id":reference})
-    db.session.execute(sql5, {"review_id":reference, "message":message})
+    db.session.execute(sql2, {"name":review_data[0], "grade":review_data[1], "review_id":reference})
+    db.session.execute(sql3, {"grade":review_data[2], "review_id":reference})
+    db.session.execute(sql4, {"grade":review_data[3], "review_id":reference})
+    db.session.execute(sql5, {"review_id":reference, "message":review_data[4]})
     db.session.commit()
     
