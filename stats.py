@@ -1,5 +1,6 @@
-from db import db
 from sqlalchemy.sql import text
+from db import db
+
 
 # FUNCTION RETURNING A LIST OF RECORDED COURSES
 def get_courses():
@@ -17,9 +18,8 @@ def latest_reviews():
                     WHERE R.course = C.course_id
                     ORDER BY created
                     DESC LIMIT 5;""")
-    result = db.session.execute(sql)
-    latest_reviews = result.fetchall()
-    return latest_reviews
+    result = db.session.execute(sql).fetchall()
+    return result
 
 
 
@@ -33,7 +33,7 @@ def full_course_data(course_id):
                     LEFT JOIN Material M ON R.id = M.review_id
                     LEFT JOIN Workload W ON R.id = W.review_id
                     LEFT JOIN Review_messages RM ON RM.review_id = R.id;""")
-    
+
     result = db.session.execute(sql, {"course_id":course_id}).fetchall()
     return result
 
@@ -98,18 +98,16 @@ def course_exists(course_id):
     course_id=course_id.upper()
     sql = text("SELECT course_id FROM Courses WHERE course_id = :course_id")
     result = db.session.execute(sql, {"course_id":course_id}).fetchone()
-    if result: return True
-    else: return False
+    return bool(result)
 
 
 
-    
+
 def teacher_exists(teacher_name):
     teacher_name = teacher_name.upper()
     sql = text("SELECT name FROM Teachers WHERE name = :name")
     result = db.session.execute(sql, {"name":teacher_name}).fetchone()
-    if result: return True
-    else: return False
+    return bool(result)
 
 
 
@@ -131,4 +129,3 @@ def teacher_grades(teacher_name):
                     WHERE name = :teacher_name""")
     result = db.session.execute(sql, {"teacher_name":teacher_name}).fetchone()
     return result
-    
