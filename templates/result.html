@@ -25,11 +25,11 @@
         <p>
             Arvioit kurssin {{ course_name }}, {{ course_id }}
             <br>
-            Annoit opettajalle arvosanaksi: {{ teacher }}
+            Annoit opettajalle {{ review_data[0] }} arvosanaksi: {{ review_data[1] }}
             <br>
-            Annoit työmäärälle arvosanaksi: {{ material }}
+            Annoit työmäärälle arvosanaksi: {{ review_data[2] }}
             <br>
-            Annoit materiaalille arvosanaksi: {{ workload }}
+            Annoit materiaalille arvosanaksi: {{ review_data[3] }}
         </p>
     </div>
 <button onclick="window.location.href = '/'">Palaa etusivulle</button>
