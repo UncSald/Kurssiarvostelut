@@ -1,9 +1,11 @@
+import secrets
+from flask import render_template, request, redirect, session, abort
 from app import app
 import database_control
 import users
 import stats
-import secrets
-from flask import render_template, request, redirect, session, abort
+
+
 
 # HOMEPAGE
 @app.route("/")
@@ -45,7 +47,7 @@ def login():
             return redirect("/")
         return render_template("loginpage.html", error_message=error_message)
 
-    
+
 
 # LOGOUT
 # DELETE SESSIONS
@@ -77,7 +79,8 @@ def result():
         workload = request.form["workload"]
         message = request.form["message"]
         database_control.add_course(course_id, course_name)
-        database_control.add_review(course_id, material, workload, teacher_name, teacher_grade, message)
+        database_control.add_review(course_id, material, workload,\
+             teacher_name, teacher_grade, message)
         return render_template("result.html", course_id=course_id, course_name=course_name,\
              teacher=teacher_grade, workload=workload, material=material)
 
@@ -86,21 +89,21 @@ def result():
 # ROUTE TO SEARCH RESULTS
 @app.route("/search_course", methods=["POST"])
 def search_course():
-    if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+    if session["csrf_token"]!=request.form["csrf_token"]:
+        abort(403)
     courses = request.form["course_id"]
     if stats.course_exists(courses):
         courses = stats.full_course_data(courses)
         return render_template("search_course.html", courses=courses)
     return redirect("/")
 
-    
+
 
 
 @app.route("/search_teacher", methods=["POST"])
 def search_teacher():
-    if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+    if session["csrf_token"]!=request.form["csrf_token"]:
+        abort(403)
     teacher = request.form["teacher_name"].upper()
     if stats.teacher_exists(teacher):
         teacher_data = stats.teacher_data(teacher)
