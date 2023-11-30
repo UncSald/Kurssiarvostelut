@@ -73,16 +73,16 @@ def result():
             abort(403)
         course_name = request.form["course_name"]
         course_id = request.form["course_id"]
-        teacher_name = request.form["teacher_name"]
-        teacher_grade = request.form["teacher_grade"]
-        material = request.form["material"]
-        workload = request.form["workload"]
-        message = request.form["message"]
+        review_data = []
+        review_data.append(request.form["teacher_name"])
+        review_data.append(request.form["teacher_grade"])
+        review_data.append(request.form["material"])
+        review_data.append(request.form["workload"])
+        review_data.append(request.form["message"])
         database_control.add_course(course_id, course_name)
-        database_control.add_review(course_id, material, workload,\
-             teacher_name, teacher_grade, message)
+        database_control.add_review(course_id, review_data)
         return render_template("result.html", course_id=course_id, course_name=course_name,\
-             teacher=teacher_grade, workload=workload, material=material)
+             review_data=review_data)
 
 
 
