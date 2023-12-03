@@ -37,22 +37,13 @@ form {
     background-color: rgb(169, 90, 206);
     padding: .4em;
 }
-form #fetch_course{
+form input {
     border-radius: .3em;
     float:inline-end;
     width: 20%;
     background: rgb(169, 90, 206);
 }
-form #fetch_course:hover{
-    background: rgb(148, 79, 180);
-}
-form #fetch_teacher{
-    border-radius: .3em;
-    float:inline-end;
-    width: 20%;
-    background: rgb(169, 90, 206);
-}
-form #fetch_teacher:hover{
+form input:hover{
     background: rgb(148, 79, 180);
 }
 textarea{
@@ -91,4 +82,11 @@ button{
 }
 button:hover {
     background-color: rgb(148, 79, 180);
+}
+li form{
+    float: none;
+    margin: .01em;
+    border-radius: .3em;
+    width: 100%;
+    padding: .01em;
 }
