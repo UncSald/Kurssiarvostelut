@@ -18,13 +18,6 @@
             {% if session.username %}
                 <li><a href="/review">Arviointilomake</a></li>
                 <li><a href="/logout">Kirjaudu ulos</a></li>
-                <li>
-                    <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
-                        <textarea name="course_id" rows="1" cols="20"></textarea>
-                        <input input id="fetch_course" type="submit" value="Hae">
-                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                    </form>
-                </li>
             {% else %}
                 <li><a href="/login">Kirjaudu sisään</a></li>
                 <li><a href="/newaccount">Luo käyttäjätunnus</a></li>
