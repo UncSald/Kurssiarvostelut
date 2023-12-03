@@ -12,14 +12,14 @@
     <nav>
         <ul>
             <li><a href="/">Koti</a></li>
-            <li><a href="/review">Arviointilomake</a></li>
             {% if session.username %}
+                <li><a href="/review">Arviointilomake</a></li>
                 <li><a href="/logout">Kirjaudu ulos</a></li>
             {% else %}
                 <li><a href="/login">Kirjaudu sisään</a></li>
                 <li><a href="/newaccount">Luo käyttäjätunnus</a></li>
             {% endif %}
-        </ul>
+          </ul>
     </nav>
     <div>
         <p>
