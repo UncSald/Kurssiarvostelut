@@ -39,7 +39,6 @@ form {
 }
 form input {
     border-radius: .3em;
-    float:inline-end;
     width: 20%;
     background: rgb(169, 90, 206);
 }
