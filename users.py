@@ -5,13 +5,12 @@ from db import db
 
 # USER CREATION
 # CHECK WETHER USERNAME EXISTS OR NOT
-
 def create_user(username, password):
     sql1 = text("SELECT username FROM users WHERE username=:username")
     result = db.session.execute(sql1, {"username":username}).fetchone()
     if result is None:
         hash_value = generate_password_hash(password)
-        sql2 = text("INSERT INTO users (username, password) VALUES (:username, :password)")
+        sql2 = text("INSERT INTO users (username, password, rights) VALUES (:username, :password, False)")
         db.session.execute(sql2, {"username":username, "password":hash_value})
         db.session.commit()
     return bool(result)
@@ -30,7 +29,7 @@ def check_password(username, password):
 
 
 
-
+# CHECK IF USER HAS ADMIN RIGHTS
 def is_admin(username):
     sql = text("SELECT rights FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username}).fetchone()
