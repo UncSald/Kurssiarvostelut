@@ -22,6 +22,7 @@
                 <li><a href="/login">Kirjaudu sisään</a></li>
                 <li><a href="/newaccount">Luo käyttäjätunnus</a></li>
             {% endif %}
+            <li><a href="/teachers">Opettajat</a></li>
           </ul>
     </nav>
 
@@ -30,14 +31,23 @@
     </div>
 
     <div>
-        {% for teacher in teachers %}
-        <form id="form1" action="/search_teacher" method="POST">
-            <li><button type="submit" name="{{ teacher[0] }}" value="teacher" class="btn-link">{{ teacher[0] }}</li>
-            <input type="hidden" name="teacher_name" value="{{ teacher[0] }}">
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        </form>
-            
-        {% endfor %}
+        <ul>
+            {% if session.username %}
+                {% for teacher in teachers %}
+                    <form id="form1" action="/search_teacher" method="POST">
+                        <li><button type="submit" name="{{ teacher[0] }}" value="teacher" class="btn-link">{{ teacher[0] }}</li>
+                        <input type="hidden" name="teacher_name" value="{{ teacher[0] }}">
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    </form>
+                {% endfor %}
+            {% else %}
+                {% for teacher in teachers %}
+                <p>
+                <li>{{ teacher[0] }}</li>
+                </p>
+                {% endfor %}
+            {% endif %}
+        </ul>
     </div>
 
 </body>
