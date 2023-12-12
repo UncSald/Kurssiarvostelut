@@ -10,7 +10,6 @@ def create_user(username, password):
     sql1 = text("SELECT username FROM users WHERE username=:username")
     result = db.session.execute(sql1, {"username":username}).fetchone()
     if result is None:
-        print("luodaan käyttäjä")
         hash_value = generate_password_hash(password)
         sql2 = text("INSERT INTO users (username, password) VALUES (:username, :password)")
         db.session.execute(sql2, {"username":username, "password":hash_value})
@@ -28,3 +27,11 @@ def check_password(username, password):
         pw_hash = user.password
         return bool(check_password_hash(pw_hash, password))
     return False
+
+
+
+
+def is_admin(username):
+    sql = text("SELECT rights FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username}).fetchone()
+    return bool(result[0])
