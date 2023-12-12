@@ -33,7 +33,7 @@ form #Send {
     background: rgb(114,96,27);
 }
 form #Send:hover{
-    background: rgb(148, 79, 180);
+    background: rgb(135, 98, 9);
 }
 input {
     grid-column-start: 1;
@@ -55,22 +55,22 @@ textarea{
     background: rgba(201, 147, 21, 0.312);
 }
 button:hover{
-    background: rgb(148, 79, 180);
+    background: rgb(135, 98, 9);
 }
 ol li{
-    background-color: purple;
+    background-color: rgb(89,58,14);
 }
 nav{
     text-align: center;
-    background-color: rgb(124, 39, 203);
+    background-color: rgb(37,89,31);
     border-radius: .5em;
     padding: 1em;
 }
 nav li{
     display: inline-block;
     border-radius: .4em;
-    padding: 1em;
-    background-color: purple;
+    padding: .3em;
+    background-color: rgb(89,58,14);
 }
 a{
     padding: 3em;
