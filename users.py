@@ -32,5 +32,5 @@ def check_password(username, password):
 # CHECK IF USER HAS ADMIN RIGHTS
 def is_admin(username):
     sql = text("SELECT rights FROM users WHERE username=:username")
-    result = db.session.execute(sql, {"username":username}).fetchone()
-    return bool(result[0])
+    result = db.session.execute(sql, {"username":username}).fetchone()[0]
+    return result
