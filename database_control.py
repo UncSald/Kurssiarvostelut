@@ -46,3 +46,11 @@ def delete_course(course_id):
     sql = text("DELETE FROM Courses WHERE course_id=:course_id")
     db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
+
+
+
+
+def rename_course(course_id, name):
+    sql = text("UPDATE courses SET name=:name WHERE course_id=:course_id")
+    db.session.execute(sql, {"name":name, "course_id":course_id})
+    db.session.commit()
