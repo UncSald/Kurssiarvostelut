@@ -10,7 +10,8 @@ def create_user(username, password):
     result = db.session.execute(sql1, {"username":username}).fetchone()
     if result is None:
         hash_value = generate_password_hash(password)
-        sql2 = text("INSERT INTO users (username, password, rights) VALUES (:username, :password, False)")
+        sql2 = text("""INSERT INTO users (username, password, rights)
+                        VALUES (:username, :password, False)""")
         db.session.execute(sql2, {"username":username, "password":hash_value})
         db.session.commit()
     return bool(result)
