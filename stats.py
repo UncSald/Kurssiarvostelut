@@ -23,7 +23,7 @@ def get_teachers():
 
 # FUNCTION RETURNING COURSE NAMES OF 5 LATEST REVIEWS
 def latest_reviews():
-    sql = text("""SELECT C.name
+    sql = text("""SELECT C.name, C.course_id
                     FROM Reviews R, Courses C
                     WHERE R.course = C.course_id
                     ORDER BY created
@@ -51,7 +51,7 @@ def full_course_data(course_id):
 
 # FUNCTION RETURNING COURSE NAMES HAVING HIGHEST AVERAGE MATERIAL SCORE IN DESCENDING ORDER
 def best_material():
-    sql = text("""SELECT C.name, (SUM(W.w)/COUNT(W.w))
+    sql = text("""SELECT C.name, C.course_id, (SUM(W.w)/COUNT(W.w))
                     FROM (SELECT W.grade AS w, R.course AS c
                             FROM Material W, Reviews R
                             WHERE R.id = W.review_id) W, Courses C
@@ -69,8 +69,7 @@ def best_teacher():
     sql = text("""SELECT W.n, (SUM(W.w)/COUNT(W.w))
                     FROM (SELECT W.grade AS w, R.course AS c, W.name AS n 
                             FROM Teachers W, Reviews R 
-                            WHERE R.id = W.review_id) W, Courses C
-                    WHERE C.course_id = W.c
+                            WHERE R.id = W.review_id) W
                     GROUP BY W.n
                     ORDER BY (SUM(W.w)/COUNT(W.w)) DESC LIMIT 5;""")
     result = db.session.execute(sql)
@@ -81,7 +80,7 @@ def best_teacher():
 
 
 def best_workload():
-    sql = text("""SELECT C.name, (SUM(W.w)/COUNT(W.w))
+    sql = text("""SELECT C.name, C.course_id, (SUM(W.w)/COUNT(W.w))
                     FROM (SELECT W.grade AS w, R.course AS c
                             FROM Workload W, Reviews R
                             WHERE R.id = W.review_id) W, Courses C
