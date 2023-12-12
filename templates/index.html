@@ -15,6 +15,8 @@
     <nav>
         <ul>
             <li><a href="/">Koti</a></li>
+            <li><a href="/teachers">Opettajat</a></li>
+            <li><a href="/courses">Kurssit</a></li>
             {% if session.username %}
                 <li><a href="/review">Arviointilomake</a></li>
                 <li><a href="/logout">Kirjaudu ulos</a></li>
@@ -22,8 +24,6 @@
                 <li><a href="/login">Kirjaudu sisään</a></li>
                 <li><a href="/newaccount">Luo käyttäjätunnus</a></li>
             {% endif %}
-            <li><a href="/teachers">Opettajat</a></li>
-            <li><a href="/courses">Kurssit</a></li>
           </ul>
     </nav>
 
@@ -34,6 +34,9 @@
             {% if session.username %}
             Olet kirjautunut tunnuksella: "{{ session.username }}"
             <p>
+                {% if session.admin %}
+                Tervetuloa admin
+                {% endif %}
                 <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
             </p>
         </div>    
@@ -47,7 +50,6 @@
                     <p>Ei hakutuloksia hakemallasi tunnuksella tai nimellä.</p>
                     {% endif %}
                 </form>
-                
         </div>
         <div>
                 <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
