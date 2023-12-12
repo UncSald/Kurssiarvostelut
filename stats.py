@@ -138,3 +138,24 @@ def teacher_grades(teacher_name):
                     WHERE name = :teacher_name""")
     result = db.session.execute(sql, {"teacher_name":teacher_name}).fetchone()
     return result
+
+
+
+
+def count_courses():
+    pass
+
+
+
+
+def count_teachers():
+    pass
+
+
+
+
+def count_reviews():
+    pass
+
+
+
