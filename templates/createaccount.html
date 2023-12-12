@@ -30,9 +30,13 @@
         <h1>Luo käyttäjätunnus</h1>
         <p>Tunnus:<br>
         <input type="text" name="username"></p>
+        {% if error %}
+            <p>Käyttäjätunnus on jo olemassa</p>
+        {% endif %}
         <p>Salasana:<br>
         <input type="password" name="password"></p>
         <input type="submit" value="Kirjaudu">
+        
     </form>
     <p>
         <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
