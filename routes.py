@@ -138,4 +138,5 @@ def rename():
     course_name = request.form["course_name"]
     course_id = request.form["course_id"]
     database_control.rename_course(course_id, new_name)
-    return render_template("renamed.html", new_name=new_name, course_id=course_id, course_name=course_name)
+    return render_template("renamed.html", new_name=new_name,\
+        course_id=course_id, course_name=course_name)
