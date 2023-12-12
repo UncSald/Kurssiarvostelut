@@ -24,21 +24,42 @@
       </ul>
 </nav>
 <body>
-    <div>
-        <h2>{{ courses[0][0] }}, {{ courses[0][1] }}</h2>
-    </div>
-    {% for course in courses %}
-    <hr>
-        <p> Kurssin opettaja: {{ course[2] }}
-            <br>Opettajalle annettu arvosana: {{ course[3] }}
-            <br>Materiaalille annettu arvosana: {{ course[4] }}
-            <br>Työmäärälle annettu arvosana: {{ course[5] }}
-        </p>
-        {% if course[6] %}
-        <p>{{ course[6] }}</p>
-        {% endif %}
-    </hr>
-    {% endfor %}
-    <p>
+    {% if courses %}
+        <div>
+            <h2>{{ courses[0][1] }}: {{ courses[0][0] }} </h2>
+        </div>
+        <div>
+        {% for course in courses %}
+        <hr>
+            <p>
+                Kurssin opettaja: {{ course[2] }}
+                <br>Opettajalle annettu arvosana: {{ course[3] }}
+                <br>Materiaalille annettu arvosana: {{ course[4] }}
+                <br>Työmäärälle annettu arvosana: {{ course[5] }}
+            </p>
+            {% if course[6] %}
+            <p>{{ course[6] }}</p>
+            {% endif %}
+        </hr>
+        {% endfor %}
+        </div>
+        
+    {% else %}
+        <div>
+            <h2>{{ teacher }}</h2>
+            Kokonaisarvosana: {{ teacher_grade[0] }}
+        </div>
+        <div>
+        {% for data in teacher_data %}
+        <hr>
+            <p>
+                Opettajan kurssi: {{ data[2] }}
+                <br> Opettajan arvosana: {{ data[1] }}
+            </p>
+            
+        </hr>
+        {% endfor %}
+        </div>
+    {% endif %}
     <button onclick="window.location.href = '/'">Takaisin etusivulle</button>
 </body>
