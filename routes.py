@@ -119,3 +119,11 @@ def search_teacher():
 def teachers():
     teachers = stats.get_teachers()
     return render_template("teachers.html", teachers=teachers)
+
+
+
+
+@app.route("/courses")
+def courses():
+    courses = stats.get_courses()
+    return render_template("courses.html", courses=courses)
