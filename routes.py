@@ -25,7 +25,6 @@ def newaccount():
     if request.method == "GET":
         return render_template("createaccount.html")
     if request.method == "POST":
-        session.permanent = False
         username = request.form["username"]
         password = request.form["password"]
         if not users.create_user(username, password):
@@ -33,6 +32,8 @@ def newaccount():
         else:
             error = True
             return render_template("createaccount.html", error=error)
+
+
 # LOGIN PAGE
 # LOGIN CHECKS RETURNING TRUE OR FALSE
 @app.route("/login", methods=["GET", "POST"])
@@ -46,6 +47,8 @@ def login():
         if users.check_password(username, password):
             session["username"] = username
             session["csrf_token"] = secrets.token_hex(16)
+            if users.is_admin(username):
+                session["admin"] = username + "admin"
             return redirect("/")
         return render_template("loginpage.html", error_message=error_message)
 
@@ -57,6 +60,8 @@ def login():
 def logout():
     if not session:
         abort(403)
+    if users.is_admin(session["username"]):
+        del session["admin"]
     del session["username"]
     del session["csrf_token"]
     return redirect("/")
