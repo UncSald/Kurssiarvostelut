@@ -28,9 +28,11 @@ def newaccount():
         session.permanent = False
         username = request.form["username"]
         password = request.form["password"]
-        users.create_user(username, password)
-        return redirect("/login")
-
+        if not users.create_user(username, password):
+            return redirect("/login")
+        else:
+            error = True
+            return render_template("createaccount.html", error=error)
 # LOGIN PAGE
 # LOGIN CHECKS RETURNING TRUE OR FALSE
 @app.route("/login", methods=["GET", "POST"])
