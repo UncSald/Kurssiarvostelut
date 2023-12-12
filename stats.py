@@ -33,7 +33,7 @@ def latest_reviews():
 
 
 
-
+# GET FULL COURSE DATA
 def full_course_data(course_id):
     course_id = course_id.upper().strip()
     sql = text("""SELECT C.name, C.course_id, T.name, T.grade, M.grade, W.grade, RM.message
@@ -64,14 +64,14 @@ def best_material():
 
 
 
-
+# RETURN THE NAME OF THE BEST TEACHER
 def best_teacher():
-    sql = text("""SELECT C.name, (SUM(W.w)/COUNT(W.w))
+    sql = text("""SELECT W.n, (SUM(W.w)/COUNT(W.w))
                     FROM (SELECT W.grade AS w, R.course AS c, W.name AS n 
                             FROM Teachers W, Reviews R 
                             WHERE R.id = W.review_id) W, Courses C
                     WHERE C.course_id = W.c
-                    GROUP BY C.course_id
+                    GROUP BY W.n
                     ORDER BY (SUM(W.w)/COUNT(W.w)) DESC LIMIT 5;""")
     result = db.session.execute(sql)
     teachers = result.fetchall()
