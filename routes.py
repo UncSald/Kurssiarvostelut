@@ -87,40 +87,26 @@ def result():
 
 
 # ROUTE TO SEARCH RESULTS
-@app.route("/search_course", methods=["POST"])
-def search_course():
+@app.route("/search", methods=["POST"])
+def search():
     if session["csrf_token"]!=request.form["csrf_token"]:
         abort(403)
-    search_input = request.form["course_id"]
+    search_input = request.form["search_data"]
     search_input = search_input.upper()
     if stats.course_exists(search_input):
         course_data = stats.full_course_data(search_input)
-        return render_template("search_course.html", courses=course_data)
+        return render_template("search.html", courses=course_data)
     if stats.teacher_exists(search_input):
         teacher_data = stats.teacher_data(search_input)
         teacher_grade = stats.teacher_grades(search_input)
-        return render_template("search_course.html", teacher=search_input,\
-             teacher_data=teacher_data, teacher_grade=teacher_grade)    
-    return redirect("/")
-
-
-
-
-@app.route("/search_teacher", methods=["POST"])
-def search_teacher():
-    if session["csrf_token"]!=request.form["csrf_token"]:
-        abort(403)
-    teacher = request.form["teacher_name"].upper()
-    if stats.teacher_exists(teacher):
-        teacher_data = stats.teacher_data(teacher)
-        teacher_grade = stats.teacher_grades(teacher)
-        return render_template("search_teacher.html", teacher=teacher,\
+        return render_template("search.html", teacher=search_input,\
              teacher_data=teacher_data, teacher_grade=teacher_grade)
-    return redirect("/")
+    error = True
+    return render_template("index.html", error=error)
 
 
 
-
+# FUNCTION TO RENDER THE TEACHER LIST PAGE
 @app.route("/teachers")
 def teachers():
     teachers = stats.get_teachers()
@@ -128,7 +114,7 @@ def teachers():
 
 
 
-
+# FUNCTION TO RENDER THE COURSE LIST PAGE
 @app.route("/courses")
 def courses():
     courses = stats.get_courses()
