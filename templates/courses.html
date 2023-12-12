@@ -35,9 +35,9 @@
         <ul>
             {% if session.username %}
                 {% for course in courses %}
-                    <form id="form1" action="/search_course" method="POST">
+                    <form id="form1" action="/search" method="POST">
                         <li><button type="submit" name="{{ course[0] }}" value="course" class="btn-link">{{ course[0] }}: {{ course[1] }}</li>
-                        <input type="hidden" name="course_id" value="{{ course[0] }}">
+                        <input type="hidden" name="search_data" value="{{ course[0] }}">
                         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     </form>
                 {% endfor %}
