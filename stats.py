@@ -11,6 +11,16 @@ def get_courses():
 
 
 
+# FUNCTION RETURNING ALL TEACHERS REGISTERED IN THE DATABASE
+def get_teachers():
+    sql = text("SELECT name FROM Teachers GROUP BY name ORDER BY name")
+    result = db.session.execute(sql)
+    teachers = result.fetchall()
+    return teachers
+
+
+
+
 # FUNCTION RETURNING COURSE NAMES OF 5 LATEST REVIEWS
 def latest_reviews():
     sql = text("""SELECT C.name
