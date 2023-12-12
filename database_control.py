@@ -8,7 +8,7 @@ from db import db
 # FUNCTION TO ADD COURSE TO DATABASE
 def add_course(course_id, name):
     name = name.upper()
-    course_id = course_id.upper()
+    course_id = course_id.upper().strip()
     sql = text("SELECT course_id FROM courses WHERE course_id = :course_id")
     sql2 = text("INSERT INTO Courses (course_id, name) VALUES (:course_id, :name)")
     course = db.session.execute(sql, {"course_id":course_id}).fetchone()
@@ -38,4 +38,3 @@ def add_review(course_id, review_data):
     db.session.execute(sql4, {"grade":review_data[3], "review_id":reference})
     db.session.execute(sql5, {"review_id":reference, "message":review_data[4]})
     db.session.commit()
-    
