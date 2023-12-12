@@ -126,3 +126,16 @@ def teachers():
 def courses():
     courses = stats.get_courses()
     return render_template("courses.html", courses=courses)
+
+
+
+
+@app.route("/renamed", methods=["POST"])
+def rename():
+    if session["csrf_token"]!=request.form["csrf_token"]:
+        abort(403)
+    new_name = request.form["new_name"]
+    course_name = request.form["course_name"]
+    course_id = request.form["course_id"]
+    database_control.rename_course(course_id, new_name)
+    return render_template("renamed.html", new_name=new_name, course_id=course_id, course_name=course_name)
