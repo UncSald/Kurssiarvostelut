@@ -38,3 +38,11 @@ def add_review(course_id, review_data):
     db.session.execute(sql4, {"grade":review_data[3], "review_id":reference})
     db.session.execute(sql5, {"review_id":reference, "message":review_data[4]})
     db.session.commit()
+
+
+
+
+def delete_course(course_id):
+    sql = text("DELETE FROM Courses WHERE course_id=:course_id")
+    db.session.execute(sql, {"course_id":course_id})
+    db.session.commit()
