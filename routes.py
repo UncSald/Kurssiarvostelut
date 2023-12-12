@@ -91,10 +91,16 @@ def result():
 def search_course():
     if session["csrf_token"]!=request.form["csrf_token"]:
         abort(403)
-    courses = request.form["course_id"]
-    if stats.course_exists(courses):
-        courses = stats.full_course_data(courses)
-        return render_template("search_course.html", courses=courses)
+    search_input = request.form["course_id"]
+    search_input = search_input.upper()
+    if stats.course_exists(search_input):
+        course_data = stats.full_course_data(search_input)
+        return render_template("search_course.html", courses=course_data)
+    if stats.teacher_exists(search_input):
+        teacher_data = stats.teacher_data(search_input)
+        teacher_grade = stats.teacher_grades(search_input)
+        return render_template("search_course.html", teacher=search_input,\
+             teacher_data=teacher_data, teacher_grade=teacher_grade)    
     return redirect("/")
 
 
