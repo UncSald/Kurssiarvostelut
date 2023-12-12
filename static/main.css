@@ -67,7 +67,7 @@ nav{
 nav li{
     display: inline-block;
     border-radius: .4em;
-    padding: 1em;
+    padding: .3em;
     background-color: purple;
 }
 a{
