@@ -23,6 +23,7 @@ div {
     border-radius: .3em;
     background-color: rebeccapurple;
     padding: 1em;
+    padding-left: 3em;
 }
 nav ul{
     list-style: none;
