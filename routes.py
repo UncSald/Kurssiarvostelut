@@ -111,3 +111,11 @@ def search_teacher():
         return render_template("search_teacher.html", teacher=teacher,\
              teacher_data=teacher_data, teacher_grade=teacher_grade)
     return redirect("/")
+
+
+
+
+@app.route("/teachers")
+def teachers():
+    teachers = stats.get_teachers()
+    return render_template("teachers.html", teachers=teachers)
