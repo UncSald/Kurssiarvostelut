@@ -25,5 +25,19 @@
           </ul>
     </nav>
 
+    <div>
+        <h2>Kaikki järjestelmästä löytyvät opettajat:</h2>
+    </div>
+
+    <div>
+        {% for teacher in teachers %}
+        <form id="form1" action="/search_teacher" method="POST">
+            <li><button type="submit" name="{{ teacher[0] }}" value="teacher" class="btn-link">{{ teacher[0] }}</li>
+            <input type="hidden" name="teacher_name" value="{{ teacher[0] }}">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+            
+        {% endfor %}
+    </div>
 
 </body>
