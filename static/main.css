@@ -55,6 +55,9 @@ textarea{
 ol li{
     background-color: purple;
 }
+ul li{
+    background-color: purple;
+}
 nav{
     text-align: center;
     background-color: rgb(124, 39, 203);
