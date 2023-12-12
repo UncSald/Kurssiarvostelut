@@ -39,15 +39,9 @@
             
             <div>
                 <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
-                    <h3>Hae kurssia tunnuksella:</h3>
+                    <h3>Hae kurssia tunnuksella tai opettajaa nimellä:</h3>
                     <textarea name="course_id" rows="1" cols="20"></textarea>
                     <input id="fetch_course" type="submit" value="Hae">
-                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-                </form>
-                <form class = "teacher" action="/search_teacher" method="POST" onsubmit="return check2(this)">
-                    <h3>Hae opettajaa nimellä:</h3>
-                    <textarea name="teacher_name" rows="1" cols="20"></textarea>
-                    <input id="fetch_teacher" type="submit" value="Hae">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                 </form>
             </div>
