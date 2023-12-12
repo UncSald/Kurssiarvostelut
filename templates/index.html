@@ -36,21 +36,25 @@
             <p>
                 <button id="logout" onclick="window.location.href = 'logout'">Kirjaudu ulos</button>
             </p>
-            
-            <div>
-                <form class="course" action="/search_course" method="POST" onsubmit="return check1(this)">
+        </div>    
+        <div>
+                <form class="course" action="/search" method="POST" onsubmit="return check1(this)">
                     <h3>Hae kurssia tunnuksella tai opettajaa nimellä:</h3>
-                    <textarea name="course_id" rows="1" cols="20"></textarea>
+                    <textarea name="search_data" rows="1" cols="20"></textarea>
                     <input id="fetch_course" type="submit" value="Hae">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    {% if error %}
+                    <p>Ei hakutuloksia hakemallasi tunnuksella tai nimellä.</p>
+                    {% endif %}
                 </form>
-            </div>
-            <div>
+                
+        </div>
+        <div>
                 <h2>Voit arvioida kurssin klikkaamalla alla olevasta näppäimestä</h2>
                 <p>
                         <button onclick="window.location.href = 'review'">ARVIOI KURSSI</button>
                 </p>
-            </div>
+        </div>
             
             {% else %}
             Kirjaudu sisään:
@@ -62,7 +66,8 @@
                 <button onclick="window.location.href = 'newaccount'">Luo käyttäjätunnus</button>
             </p>   
             {% endif %}
-
+        </div>    
+    <div>
         <h2>Tuoreimmat arvioinnit</h2>
             <ol>
                     {% for course in courses %}
@@ -97,17 +102,6 @@
     // 
     function check1(form) {
         if (form.course_id.value.length==0) {
-            alert("Hakukenttä on tyhjä");
-            return false;
-        }
-        return true;
-    }
-
-
-
-
-    function check2(form) {
-        if (form.teacher_name.value.length==0) {
             alert("Hakukenttä on tyhjä");
             return false;
         }
