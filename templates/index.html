@@ -71,7 +71,7 @@
         <h2>Tuoreimmat arvioinnit</h2>
             <ol>
                     {% for course in courses %}
-                    <li>{{ course[0] }}</li>
+                    <li>{{ course[1] }}: {{ course[0] }}</li>
                     {% endfor %}
             </ol>
                     
@@ -85,14 +85,14 @@
         <h2>TOP 5 materiaali</h2>
             <ol>
                     {% for course in material %}
-                    <li>{{ course[0] }}</li>
+                    <li>{{ course[1] }}: {{ course[0] }}</li>
                     {% endfor %}
             </ol>
 
         <h2>TOP 5 vähiten työläät kurssit</h2>
             <ol>
                     {% for course in workload %}
-                    <li>{{ course[0] }}</li>
+                    <li>{{ course[1] }}: {{ course[0] }}</li>
                     {% endfor %}
             </ol>
     </div>
