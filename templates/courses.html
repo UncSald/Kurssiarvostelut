@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="/static/main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Kurssikarhu</title>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1>Kurssikarhu</h1> 
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/">Koti</a></li>
+            {% if session.username %}
+                <li><a href="/review">Arviointilomake</a></li>
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+            {% else %}
+                <li><a href="/login">Kirjaudu sisään</a></li>
+                <li><a href="/newaccount">Luo käyttäjätunnus</a></li>
+            {% endif %}
+            <li><a href="/teachers">Opettajat</a></li>
+            <li><a href="/courses">Kurssit</a></li>
+          </ul>
+    </nav>
+
+    <div>
+        <h2>Kaikki järjestelmästä löytyvät opettajat:</h2>
+    </div>
+
+    <div>
+        <ul>
+            {% if session.username %}
+                {% for course in courses %}
+                    <form id="form1" action="/search_course" method="POST">
+                        <li><button type="submit" name="{{ course[0] }}" value="course" class="btn-link">{{ course[0] }}: {{ course[1] }}</li>
+                        <input type="hidden" name="course_id" value="{{ course[0] }}">
+                        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    </form>
+                {% endfor %}
+            {% else %}
+                {% for course in courses %}
+                <p>
+                <li>{{ course[0] }}: {{ course[1] }}</li>
+                </p>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+</body>
