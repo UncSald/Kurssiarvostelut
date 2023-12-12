@@ -9,14 +9,15 @@ from db import db
 def create_user(username, password):
     sql1 = text("SELECT username FROM users WHERE username=:username")
     result = db.session.execute(sql1, {"username":username}).fetchone()
-    print(result)
     if result is None:
         print("luodaan käyttäjä")
         hash_value = generate_password_hash(password)
         sql2 = text("INSERT INTO users (username, password) VALUES (:username, :password)")
         db.session.execute(sql2, {"username":username, "password":hash_value})
         db.session.commit()
-    else: print("username exists")
+    return bool(result)
+
+
 
 # CHECKING WETHER PASSWORD MATCHES SAVED PASSWORD
 def check_password(username, password):
