@@ -112,6 +112,14 @@
         }
 
 
+        // CHECK FORM course_id VALUE, NO WHITESPACE ALLOWED
+        if (Array.from(form.course_id.value.matchAll(/ /g)).length>0) {
+            alert("Kurssin tunnuksessa ei pitäisi olla välilyöntejä.\n\
+Ole hyvä ja poista ylimääräiset välilyönnit")
+            return false;
+        }
+
+
 
         // CHECK FORM teacher_name VALUE, 0 CHARACTERS ARE NOT ALLOWED
         if (form.teacher_name.value.length==0) {
