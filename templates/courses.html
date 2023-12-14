@@ -29,6 +29,7 @@
 
     <div>
         <h2>Kaikki järjestelmästä löytyvät kurssit:</h2>
+        <p>Kursseja järjestelmässä: {{ course_count }}</p>
     </div>
 
     <div>
@@ -56,6 +57,7 @@
                 <li>{{ course[0] }}: {{ course[1] }}</li>
                 </p>
                 {% endfor %}
+                <p>Kirjaudu sisään nähdäksesi lisätietoja kursseista</p>
             {% endif %}
         </ul>
     </div>
