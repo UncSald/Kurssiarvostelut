@@ -14,8 +14,9 @@ def index():
     material = stats.best_material()
     teacher = stats.best_teacher()
     workload = stats.best_workload()
+    review_count = stats.count_reviews()
     return render_template("index.html", courses=courses, material=material,\
-         teacher=teacher, workload=workload)
+         teacher=teacher, workload=workload, review_count=review_count)
 
 
 
@@ -117,7 +118,8 @@ def search():
 @app.route("/teachers")
 def teachers():
     teachers = stats.get_teachers()
-    return render_template("teachers.html", teachers=teachers)
+    teacher_count = stats.count_teachers()
+    return render_template("teachers.html", teachers=teachers, teacher_count=teacher_count)
 
 
 
@@ -125,7 +127,8 @@ def teachers():
 @app.route("/courses")
 def courses():
     courses = stats.get_courses()
-    return render_template("courses.html", courses=courses)
+    course_count = stats.count_courses()
+    return render_template("courses.html", courses=courses, course_count=course_count)
 
 
 
