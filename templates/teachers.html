@@ -29,6 +29,7 @@
 
     <div>
         <h2>Kaikki järjestelmästä löytyvät opettajat:</h2>
+        <p>Opettajia järjestelmässä: {{ teacher_count }}</p>
     </div>
 
     <div>
@@ -47,6 +48,7 @@
                 <li>{{ teacher[0] }}</li>
                 </p>
                 {% endfor %}
+                <p>Kirjaudu sisään nähdäksesi lisätietoja opettajista</p>
             {% endif %}
         </ul>
     </div>
