@@ -59,5 +59,10 @@
             return false;
         }
         return true;
+        if (Array.from(form.password.value.matchAll(/ /g)).length>0) {
+            alert("Salasanassa ei pitäisi olla välilyöntejä.\n\
+Ole hyvä ja poista ylimääräiset välilyönnit")
+            return false;
+        }
     }
 </script>
