@@ -95,7 +95,7 @@ def best_workload():
 
 
 def best_overall():
-    sql = text("")
+    
     result = db.session.execute(sql)
     best = result.fetchall()
     return best
@@ -143,19 +143,22 @@ def teacher_grades(teacher_name):
 
 
 def count_courses():
-    pass
+    sql = text("SELECT COUNT(course_id) FROM Courses")
+    result = db.session.execute(sql).fetchone()[0]
+    return result
 
 
 
 
 def count_teachers():
-    pass
+    sql = text("SELECT COUNT(DISTINCT name) FROM Teachers")
+    result = db.session.execute(sql).fetchone()[0]
+    return result
 
 
 
 
 def count_reviews():
-    pass
-
-
-
+    sql = text("SELECT COUNT(id) FROM Reviews")
+    result = db.session.execute(sql).fetchone()[0]
+    return result
