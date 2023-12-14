@@ -29,7 +29,14 @@
 
     <div>
         <h2>Tervetuloa Kurssikarhuun, anonyymiin kurssiarviointipalveluun!</h2>
-        
+        {% if review_count == 1 %}
+            <h3>Tietokannassamme on vasta {{ review_count }} arviointi...</h3>
+            {% elif review_count == 0 %}
+                <h3>Tietokannassamme ei ole vielä yhtään arviointia.</h3>
+                <h3>Ehkä sinä voisit arvioida ensimmäisen kurssimme!</h3>
+            {% else %}
+            <h3>Tietokannassamme on jo {{ review_count }} arviointia!</h3>
+                {% endif %} 
             <p>
             {% if session.username %}
             Olet kirjautunut tunnuksella: "{{ session.username }}"
@@ -59,7 +66,7 @@
         </div>
             
             {% else %}
-            Kirjaudu sisään:
+            Kirjaudu sisään voidaksesi aloittaa kurssien arvioinnin:
             <p>
                 <button onclick="window.location.href = 'login'">Kirjaudu sisään</button>
             </p>
@@ -70,33 +77,38 @@
             {% endif %}
         </div>    
     <div>
-        <h2>Tuoreimmat arvioinnit</h2>
-            <ol>
-                    {% for course in courses %}
-                    <li>{{ course[1] }}: {{ course[0] }}</li>
-                    {% endfor %}
-            </ol>
-                    
-        <h2>TOP 5 opettajat</h2>
-            <ol>
-                    {% for course in teacher %}
-                    <li>{{ course[0] }}</li>
-                    {% endfor %}
-            </ol>
-        
-        <h2>TOP 5 materiaali</h2>
-            <ol>
-                    {% for course in material %}
-                    <li>{{ course[1] }}: {{ course[0] }}</li>
-                    {% endfor %}
-            </ol>
-
-        <h2>TOP 5 vähiten työläät kurssit</h2>
-            <ol>
-                    {% for course in workload %}
-                    <li>{{ course[1] }}: {{ course[0] }}</li>
-                    {% endfor %}
-            </ol>
+        {% if teacher %}
+            <h2>Tuoreimmat arvioinnit</h2>
+                <ol>
+                        {% for course in courses %}
+                        <li>{{ course[1] }}: {{ course[0] }}</li>
+                        {% endfor %}
+                </ol>
+                {% endif %}
+        {% if teacher %}
+            <h2>TOP 5 opettajat</h2>
+                <ol>
+                        {% for course in teacher %}
+                        <li>{{ course[0] }}</li>
+                        {% endfor %}
+                </ol>
+                {% endif %}
+        {% if teacher %}
+            <h2>TOP 5 materiaali</h2>
+                <ol>
+                        {% for course in material %}
+                        <li>{{ course[1] }}: {{ course[0] }}</li>
+                        {% endfor %}
+                </ol>
+                {% endif %}
+        {% if teacher %}
+            <h2>TOP 5 vähiten työläät kurssit</h2>
+                <ol>
+                        {% for course in workload %}
+                        <li>{{ course[1] }}: {{ course[0] }}</li>
+                        {% endfor %}
+                </ol>
+                {% endif %}
     </div>
 </body>
 
