@@ -34,7 +34,10 @@
             <p>Käyttäjätunnus on jo olemassa</p>
         {% endif %}
         <p>Salasana:<br>
-        <input type="password" name="password"></p>
+            <input type="password" name="password"></p>
+        
+        <p>Syötä salasana uudelleen:<br>
+            <input type="password" name="password_check"></p>
         <input type="submit" value="Kirjaudu">
         
     </form>
@@ -58,11 +61,16 @@
             alert("Salasana ei voi olla tyhjä");
             return false;
         }
-        return true;
         if (Array.from(form.password.value.matchAll(/ /g)).length>0) {
             alert("Salasanassa ei pitäisi olla välilyöntejä.\n\
 Ole hyvä ja poista ylimääräiset välilyönnit")
             return false;
         }
+        if (form.password.value != form.password_check.value) {
+            alert("Salasanat eivät täsmää.\n\
+Tarkista, että olet syöttänyt molempiin laatikoihin saman salasanan");
+        return false;
+        }
+        return true;
     }
 </script>
