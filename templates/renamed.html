@@ -24,6 +24,16 @@
           </ul>
     </nav>
     <div>
-        <h2>Kurssin nimi {{ course_name  }} on vaihdettu nimeen {{ new_name }}</h2>
+        {% if delete_course %}
+        <h2>Oletko varma, että haluat poistaa kurssin {{ course_name }}: {{ course_id }}</h2>
+        <form action="/delete" method="POST">
+            <button type="submit" name="send" value="Delete" class="btn-link">Poista kurssi</button>
+            <input type="hidden" name="course_id" value="{{ course_id }}">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+
+        {% else %}
+            <h2>Kurssin nimi {{ course_name  }} on vaihdettu nimeen {{ new_name }}</h2>
+        {% endif %}
     </div>
 </body>
