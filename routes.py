@@ -171,9 +171,31 @@ def courses():
 def rename():
     if session["csrf_token"]!=request.form["csrf_token"]:
         abort(403)
-    new_name = request.form["new_name"]
-    course_name = request.form["course_name"]
+    delete_course = False
+    try:
+        new_name = request.form["new_name"]
+        course_name = request.form["course_name"]
+        course_id = request.form["course_id"]
+        database_control.rename_course(course_id, new_name)
+        return render_template("renamed.html", new_name=new_name,\
+            course_id=course_id, course_name=course_name, delete_course=delete_course)
+    except:
+        course_name = request.form["course_name"]
+        course_id = request.form["course_id"]
+        delete_course = True
+    
+    
+        return render_template("renamed.html", course_name=course_name,\
+            course_id=course_id, delete_course=delete_course)
+    return redirect("/")
+
+
+
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    if session["csrf_token"]!=request.form["csrf_token"]:
+        abort(403)
     course_id = request.form["course_id"]
-    database_control.rename_course(course_id, new_name)
-    return render_template("renamed.html", new_name=new_name,\
-        course_id=course_id, course_name=course_name)
+    database_control.delete_course(course_id)
+    return render_template("delete.html", course_id=course_id)
