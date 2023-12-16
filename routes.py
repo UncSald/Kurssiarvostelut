@@ -110,7 +110,14 @@ def search():
         return render_template("search.html", teacher=search_input,\
              teacher_data=teacher_data, teacher_grade=teacher_grade)
     error = True
-    return render_template("index.html", error=error)
+    courses = stats.latest_reviews()
+    material = stats.best_material()
+    teacher = stats.best_teacher()
+    workload = stats.best_workload()
+    review_count = stats.count_reviews()
+    return render_template("index.html", courses=courses, material=material,\
+         teacher=teacher, workload=workload,\
+             review_count=review_count, error=error)
 
 
 
