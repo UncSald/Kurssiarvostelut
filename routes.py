@@ -11,12 +11,12 @@ import stats
 # HOMEPAGE
 @app.route("/")
 def index():
-    courses = stats.latest_reviews()
+    reviewed_courses = stats.latest_reviews()
     material = stats.best_material()
     teacher = stats.best_teacher()
     workload = stats.best_workload()
     review_count = stats.count_reviews()
-    return render_template("index.html", courses=courses, material=material,\
+    return render_template("index.html", reviewed_courses=reviewed_courses, material=material,\
          teacher=teacher, workload=workload, review_count=review_count)
 
 
@@ -31,9 +31,8 @@ def newaccount():
         password = request.form["password"]
         if not users.create_user(username, password):
             return redirect("/login")
-        else:
-            error = True
-            return render_template("createaccount.html", error=error)
+        error = True
+        return render_template("createaccount.html", error=error)
 
 
 # LOGIN PAGE
@@ -51,6 +50,7 @@ def login():
             session["csrf_token"] = secrets.token_hex(16)
             if users.is_admin(username):
                 session["admin"] = username + "admin"
+                return redirect("/")
             return redirect("/")
         return render_template("loginpage.html", error_message=error_message)
 
@@ -84,20 +84,20 @@ def result():
         course_id = request.form["course_id"]
 
         try:
-            course_name = re.search("\S\w*(:? \w+)*", course_name).group()
-        except:
+            course_name = re.search(r"\S\w*(:? \w+)*", course_name).group()
+        except AttributeError:
             print("course name regex error")
 
         try:
-            course_id = re.search("\S\w*-?\w*", course_id).group()
-        except:
+            course_id = re.search(r"\S\w*-?\w*", course_id).group()
+        except AttributeError:
             print("course id regex error")
 
         review_data = []
         teacher_name = request.form["teacher_name"]
         try:
-            teacher_name = re.search("\S\w* \w*", teacher_name).group()
-        except:
+            teacher_name = re.search(r"\S\w* \w*", teacher_name).group()
+        except AttributeError:
             print("teacher regex name error")
         review_data.append(teacher_name)
         review_data.append(request.form["teacher_grade"])
@@ -119,21 +119,21 @@ def search():
     unmodified_search_input = request.form["search_data"]
 
     try:
-        search_input = re.search("\S\w*-?\w*", unmodified_search_input).group().upper()
+        search_input = re.search(r"\S\w*-?\w*", unmodified_search_input).group().upper()
         if stats.course_exists(search_input):
             course_data = stats.full_course_data(search_input)
             return render_template("search.html", courses=course_data)
-    except:
+    except AttributeError:
         pass
 
     try:
-        search_input = re.search("\S\w* \w*", unmodified_search_input).group().upper()
+        search_input = re.search(r"\S\w* \w*", unmodified_search_input).group().upper()
         if stats.teacher_exists(search_input):
             teacher_data = stats.teacher_data(search_input)
             teacher_grade = stats.teacher_grades(search_input)
             return render_template("search.html", teacher=search_input,\
                 teacher_data=teacher_data, teacher_grade=teacher_grade)
-    except:
+    except AttributeError:
         pass
 
     error = True
