@@ -115,7 +115,7 @@
 <script>
     // 
     function check1(form) {
-        if (form.course_id.value.length==0) {
+        if (! /\w/.exec(form.search_data.value)){
             alert("Hakukenttä on tyhjä");
             return false;
         }
