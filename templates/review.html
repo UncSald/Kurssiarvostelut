@@ -97,8 +97,16 @@
 
 
 
+        if (/\w* {2,}\w*/.exec(form.course_name.value)) {
+            alert("Kurssin nimessä on ylimääräisiä välilyöntejä.\n\
+Ole hyvä ja poista ylimääräiset välilyönnit")
+            return false;
+        }
+
+
+
         // CHECK FORM course_id VALUE, OVER 10 CHARACTERS ARE NOT ALLOWED
-        if (form.course_id.value.length>10) {
+        if (form.course_id.value.length>12) {
             alert("Kurssin tunnus on liian pitkä");
             return false;
         }
@@ -113,7 +121,7 @@
 
 
         // CHECK FORM course_id VALUE, NO WHITESPACE ALLOWED
-        if (Array.from(form.course_id.value.matchAll(/ /g)).length>0) {
+        if (/\w* \w*/.exec(form.course_id.value)) {
             alert("Kurssin tunnuksessa ei pitäisi olla välilyöntejä.\n\
 Ole hyvä ja poista ylimääräiset välilyönnit")
             return false;
@@ -124,6 +132,14 @@ Ole hyvä ja poista ylimääräiset välilyönnit")
         // CHECK FORM teacher_name VALUE, 0 CHARACTERS ARE NOT ALLOWED
         if (form.teacher_name.value.length==0) {
             alert("Anna opettajalle nimi");
+            return false;
+        }
+
+
+
+        if (/\w* {2,}\w*/.exec(form.teacher_name.value)) {
+            alert("Opettajan nimessä on ylimääräisiä välilyöntejä.\n\
+Ole hyvä ja poista ylimääräiset välilyönnit")
             return false;
         }
 
