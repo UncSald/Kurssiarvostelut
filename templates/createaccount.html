@@ -53,6 +53,10 @@
 
 <script>
     function check(form){
+        if (form.username.value.length==0) {
+            alert("Käyttäjätunnus ei voi olla tyhjä");
+            return false;
+        }
         if (/[ .:,;\?/()[\]\{\}&%¤$£#"@!'*¨^~`=+]+/.exec(form.username.value)) {
             alert("Käyttäjätunnuksessa ei pitäisi olla erikoismerkkejä.\n\
 Vain aakkoset, numerot ja '_' kelpaavat.")
