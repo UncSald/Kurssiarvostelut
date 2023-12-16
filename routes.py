@@ -1,4 +1,5 @@
 import secrets
+import re
 from flask import render_template, request, redirect, session, abort
 from app import app
 import database_control
@@ -99,16 +100,25 @@ def result():
 def search():
     if session["csrf_token"]!=request.form["csrf_token"]:
         abort(403)
-    search_input = request.form["search_data"]
-    search_input = search_input.upper()
-    if stats.course_exists(search_input):
-        course_data = stats.full_course_data(search_input)
-        return render_template("search.html", courses=course_data)
-    if stats.teacher_exists(search_input):
-        teacher_data = stats.teacher_data(search_input)
-        teacher_grade = stats.teacher_grades(search_input)
-        return render_template("search.html", teacher=search_input,\
-             teacher_data=teacher_data, teacher_grade=teacher_grade)
+    unmodified_search_input = request.form["search_data"]
+    try:
+        search_input = re.search("\S\w*-?\w*", unmodified_search_input).group().upper()
+        if stats.course_exists(search_input):
+            course_data = stats.full_course_data(search_input)
+            return render_template("search.html", courses=course_data)
+    except:
+        pass
+
+    try:
+        search_input = re.search("\S\w* \w*", unmodified_search_input).group().upper()
+        if stats.teacher_exists(search_input):
+            teacher_data = stats.teacher_data(search_input)
+            teacher_grade = stats.teacher_grades(search_input)
+            return render_template("search.html", teacher=search_input,\
+                teacher_data=teacher_data, teacher_grade=teacher_grade)
+    except:
+        pass
+
     error = True
     courses = stats.latest_reviews()
     material = stats.best_material()
@@ -116,8 +126,8 @@ def search():
     workload = stats.best_workload()
     review_count = stats.count_reviews()
     return render_template("index.html", courses=courses, material=material,\
-         teacher=teacher, workload=workload,\
-             review_count=review_count, error=error)
+        teacher=teacher, workload=workload,\
+            review_count=review_count, error=error)
 
 
 
