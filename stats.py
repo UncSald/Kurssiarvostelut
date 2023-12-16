@@ -78,7 +78,7 @@ def best_teacher():
 
 
 
-
+# RETURN 5 COURSES WITH THE BEST WORKLOAD
 def best_workload():
     sql = text("""SELECT C.name, C.course_id, (SUM(W.w)/COUNT(W.w))
                     FROM (SELECT W.grade AS w, R.course AS c
@@ -93,16 +93,7 @@ def best_workload():
 
 
 
-
-def best_overall():
-    
-    result = db.session.execute(sql)
-    best = result.fetchall()
-    return best
-
-
-
-
+# RETURN BOOL IF COURSE ID CAN BE FOUND IN DATABASE
 def course_exists(course_id):
     course_id=course_id.upper()
     sql = text("SELECT course_id FROM Courses WHERE course_id = :course_id")
@@ -111,7 +102,7 @@ def course_exists(course_id):
 
 
 
-
+# RETURN BOOL IF TEACHER NAME CAN BE FOUND IN DATABASE
 def teacher_exists(teacher_name):
     teacher_name = teacher_name.upper()
     sql = text("SELECT name FROM Teachers WHERE name = :name")
@@ -120,9 +111,9 @@ def teacher_exists(teacher_name):
 
 
 
-
+# RETURN TEACHER NAME, GRADE, AND COURSE TEACHER IS ASSOCIATED WITH
 def teacher_data(teacher_name):
-    sql = text("""SELECT T.name ,T.grade, C.course_id   FROM Teachers T
+    sql = text("""SELECT T.name, T.grade, C.course_id   FROM Teachers T
                     JOIN Reviews R ON R.id = T.review_id
                         AND T.name LIKE :teacher_name
                     LEFT JOIN Courses C ON R.course = C.course_id;""")
@@ -131,7 +122,7 @@ def teacher_data(teacher_name):
 
 
 
-
+# RETURN TEACHER GRADE AVERAGE
 def teacher_grades(teacher_name):
     sql = text("""SELECT SUM(grade)/COUNT(grade)
                     FROM Teachers
@@ -141,7 +132,7 @@ def teacher_grades(teacher_name):
 
 
 
-
+# COUNTS HOW MANY UNIQUE COURSE IDS THERE ARE IN THE DATABASE
 def count_courses():
     sql = text("SELECT COUNT(course_id) FROM Courses")
     result = db.session.execute(sql).fetchone()[0]
@@ -149,7 +140,7 @@ def count_courses():
 
 
 
-
+# COUNT HOW MANY UNIQUE TEACHER NAMES THERE ARE IN THE DATABASE
 def count_teachers():
     sql = text("SELECT COUNT(DISTINCT name) FROM Teachers")
     result = db.session.execute(sql).fetchone()[0]
@@ -157,7 +148,7 @@ def count_teachers():
 
 
 
-
+# COUNT HOW MANY INDIVIDUAL REVIEWS THERE ARE IN THE DATABASE
 def count_reviews():
     sql = text("SELECT COUNT(id) FROM Reviews")
     result = db.session.execute(sql).fetchone()[0]

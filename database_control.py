@@ -40,16 +40,16 @@ def add_review(course_id, review_data):
     db.session.commit()
 
 
-
-
+# FUNCTION TO DELETE A COURSE AND
+# ROWS FROM OTHER TABLES THAT REFERENCE TO IT
 def delete_course(course_id):
     sql = text("DELETE FROM Courses WHERE course_id=:course_id")
     db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
 
 
-
-
+# RENAME COURSE ALLOW ADMIN TO RENAME COURSES
+# IF A NAME IS INCORRECT OR INAPROPPRIATE
 def rename_course(course_id, name):
     sql = text("UPDATE courses SET name=:name WHERE course_id=:course_id")
     db.session.execute(sql, {"name":name, "course_id":course_id})

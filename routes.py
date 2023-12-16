@@ -21,7 +21,7 @@ def index():
 
 
 
-
+# ACCOUNT CREATION PAGE
 @app.route("/newaccount", methods=["GET","POST"])
 def newaccount():
     if request.method == "GET":
@@ -165,8 +165,8 @@ def courses():
     return render_template("courses.html", courses=courses, course_count=course_count)
 
 
-
-
+# ROUTE TO PAGE WITH DATA ON THE RENAMED COURSE
+# POSSIBILITY TO SHOW THE DELETE COURSE ROUTE AND QUESTION
 @app.route("/renamed", methods=["POST"])
 def rename():
     if session["csrf_token"]!=request.form["csrf_token"]:
@@ -183,15 +183,14 @@ def rename():
         course_name = request.form["course_name"]
         course_id = request.form["course_id"]
         delete_course = True
-    
-    
+
         return render_template("renamed.html", course_name=course_name,\
             course_id=course_id, delete_course=delete_course)
     return redirect("/")
 
 
 
-
+#ROUTE TO THE DELETE.HTML FILE WITH INFO ON THE DELETED COURSE
 @app.route("/delete", methods=["POST"])
 def delete():
     if session["csrf_token"]!=request.form["csrf_token"]:
