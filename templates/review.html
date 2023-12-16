@@ -153,11 +153,13 @@ Ole hyvä ja poista ylimääräiset rivinvaihdot")
 
 
 
-        if (/\w* {2,}\w*/.exec(form.teacher_name.value)) {
-            alert("Opettajan nimessä on ylimääräisiä välilyöntejä.\n\
-Ole hyvä ja poista ylimääräiset välilyönnit")
+        if (! /\S[A-z]*(-[A-z]*)* [A-z]*(-[A-z]*)*/.exec(form.teacher_name.value)) {
+            alert("Opettajan nimessä kuuluu olla etu- ja sukunimi.\n\
+Ole hyvä ja anna etu- ja sukunimi erikseen kirjoitettuna,\n\
+ilman numeroita ja/tai välimerkkejä")
             return false;
         }
+
 
 
 
