@@ -53,17 +53,19 @@
 
 <script>
     function check(form){
-        if (form.username.value.length==0) {
-            alert("Käyttäjätunnus ei voi olla tyhjä");
+        if (/[ .:,;\?/()[\]\{\}&%¤$£#"@!'*¨^~`=+]+/.exec(form.username.value)) {
+            alert("Käyttäjätunnuksessa ei pitäisi olla erikoismerkkejä.\n\
+Vain aakkoset, numerot ja '_' kelpaavat.")
             return false;
         }
         if (form.password.value.length==0) {
             alert("Salasana ei voi olla tyhjä");
             return false;
         }
-        if (Array.from(form.password.value.matchAll(/ /g)).length>0) {
-            alert("Salasanassa ei pitäisi olla välilyöntejä.\n\
-Ole hyvä ja poista ylimääräiset välilyönnit")
+        if (/[ .:,;\/()[\]\{\}¤$£"'*¨^~`=+]+/.exec(form.password.value)) {
+            alert("Salasanassa ei pitäisi olla erikoismerkkejä.\n\
+Vain aakkoset, numerot ja listassa olevat erikoismerkit kelpaavat.\n\
+_ @ # % & ?")
             return false;
         }
         if (form.password.value != form.password_check.value) {
