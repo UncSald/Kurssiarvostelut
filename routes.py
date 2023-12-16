@@ -82,8 +82,24 @@ def result():
             abort(403)
         course_name = request.form["course_name"]
         course_id = request.form["course_id"]
+
+        try:
+            course_name = re.search("\S\w*(:? \w+)*", course_name).group()
+        except:
+            print("course name regex error")
+
+        try:
+            course_id = re.search("\S\w*-?\w*", course_id).group()
+        except:
+            print("course id regex error")
+
         review_data = []
-        review_data.append(request.form["teacher_name"])
+        teacher_name = request.form["teacher_name"]
+        try:
+            teacher_name = re.search("\S\w* \w*", teacher_name).group()
+        except:
+            print("teacher regex name error")
+        review_data.append(teacher_name)
         review_data.append(request.form["teacher_grade"])
         review_data.append(request.form["material"])
         review_data.append(request.form["workload"])
@@ -101,6 +117,7 @@ def search():
     if session["csrf_token"]!=request.form["csrf_token"]:
         abort(403)
     unmodified_search_input = request.form["search_data"]
+
     try:
         search_input = re.search("\S\w*-?\w*", unmodified_search_input).group().upper()
         if stats.course_exists(search_input):
