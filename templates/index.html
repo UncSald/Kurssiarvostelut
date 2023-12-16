@@ -80,7 +80,7 @@
         {% if teacher %}
             <h2>Tuoreimmat arvioinnit</h2>
                 <ol>
-                        {% for course in courses %}
+                        {% for course in reviewed_courses %}
                         <li>{{ course[1] }}: {{ course[0] }}</li>
                         {% endfor %}
                 </ol>
