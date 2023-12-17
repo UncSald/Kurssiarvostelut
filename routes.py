@@ -111,10 +111,12 @@ def result():
         review_data.append(request.form["workload"])
         review_data.append(request.form["message"])
         database_control.add_course(course_id, course_name)
-        database_control.add_review(course_id, review_data)
-        return render_template("result.html", course_id=course_id, course_name=course_name,\
-             review_data=review_data)
-
+        if database_control.add_review(course_id, review_data):
+            return render_template("result.html", course_id=course_id,\
+            course_name=course_name, review_data=review_data)
+        else:
+            error = True
+            return render_template("review.html", error=error)
 
 
 # ROUTE TO SEARCH RESULTS
