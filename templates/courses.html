@@ -42,7 +42,7 @@
                         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     </form>
                     {% if session.admin %}
-                    <form action="/renamed" method="POST">
+                    <form action="/renamed" method="POST" onsubmit="return check(this)">
                         <textarea name="new_name" rows="1" cols="50"></textarea>
                         <button type="submit" name="send" value="course" class="btn-link">Nimeä kurssi uudelleen</button>
                         <input type="hidden" name="course_id" value="{{ course[0] }}">
@@ -69,3 +69,21 @@
     </div>
 
 </body>
+
+<script>
+    function check(form) {
+        if (form.new_name.value.length==0) {
+            alert("Ole hyvä ja anna kurssille nimi");
+            return false;
+        }
+
+
+
+        if (/\w* {2,}\w*/.exec(form.new_name.value)) {
+            alert("Kurssin nimessä on ylimääräisiä välilyöntejä.\n\
+Ole hyvä ja poista ylimääräiset välilyönnit")
+            return false;
+        }
+        return true;
+    }
+</script>
