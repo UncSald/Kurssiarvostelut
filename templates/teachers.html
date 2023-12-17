@@ -36,11 +36,14 @@
         <ul>
             {% if session.username %}
                 {% for teacher in teachers %}
+                <li>
+                    {{ teacher[0] }}
                     <form id="form1" action="/search" method="POST">
-                        <li><button type="submit" name="{{ teacher[0] }}" value="teacher" class="btn-link">{{ teacher[0] }}</li>
+                        <button type="submit" name="{{ teacher[0] }}" value="teacher" class="btn-link">Siirry opettajan sivuille</button>
                         <input type="hidden" name="search_data" value="{{ teacher[0] }}">
                         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     </form>
+                </li>
                 {% endfor %}
             {% else %}
                 {% for teacher in teachers %}
