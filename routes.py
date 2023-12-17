@@ -95,8 +95,14 @@ def result():
 
         review_data = []
         teacher_name = request.form["teacher_name"]
+        
         try:
-            teacher_name = re.search(r"\S\w* \w*", teacher_name).group()
+            if re.search(r"\S[A-z]+ [A-z]+(, [A-z]+ [A-z]+)+", teacher_name):
+                teacher_name = list(set(re.search(\
+                    r"\S[A-z]+ [A-z]+(, *[A-z]+ [A-z]+)*", teacher_name)\
+                        .group().split(", ")))
+            else:
+                teacher_name = re.search(r"\S\w* \w*", teacher_name).group()
         except AttributeError:
             print("teacher regex name error")
         review_data.append(teacher_name)
