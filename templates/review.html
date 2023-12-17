@@ -31,7 +31,14 @@
     <div>
         <h2>Arviointilomake</h2>
         <p>Ole hyvä ja täytä kaikki tähdellä merkityt kohdat</p>
+        {% if error %}
+        <p>
+            <h2>VIRHE!</h2>
+            <h2>Tapahtui odottamaton virhe ladattaessa arviointia tietokantaan! Yritä myöhemmin uudelleen.</h2>
+        </p>
+        {% endif %}
     </div>
+    
     <div>
         <form action="/review" method="POST" onsubmit="return check(this)">
 
