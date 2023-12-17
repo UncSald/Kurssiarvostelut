@@ -42,7 +42,7 @@
                 <textarea name="course_id" rows="1" cols="10" placeholder="Esim. TKT10004"></textarea>
 
             <h3>* Syöta opettajan nimi ja arvioi suoritus:</h3>
-                    <textarea name="teacher_name" rows="1" cols="30" placeholder="Etunimi Sukunimi"></textarea>
+                    <textarea name="teacher_name" rows="1" cols="30" placeholder="Etunimi Sukunimi (1 opettaja per kurssi)"></textarea>
                         <input type="radio" name="teacher_grade" value="1"> välttävä
                         <input type="radio" name="teacher_grade" value="2"> tyydyttävä
                         <input type="radio" name="teacher_grade" value="3"> hyvä
@@ -153,7 +153,7 @@ Ole hyvä ja poista ylimääräiset rivinvaihdot")
 
 
 
-        if (! /\S[A-z]*(-[A-z]*)* [A-z]*(-[A-z]*)*/.exec(form.teacher_name.value)) {
+        if (! /^\S[A-z]*(-[A-z]*)* [A-z]*(-[A-z]*)*$/.exec(form.teacher_name.value)) {
             alert("Opettajan nimessä kuuluu olla etu- ja sukunimi.\n\
 Ole hyvä ja anna etu- ja sukunimi erikseen kirjoitettuna,\n\
 ilman numeroita ja/tai välimerkkejä")
