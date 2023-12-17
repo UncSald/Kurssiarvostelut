@@ -28,26 +28,33 @@ def add_review(course_id, review_data):
     db.session.commit()
     sql1 = text("SELECT MAX(id) FROM Reviews")
     reference = db.session.execute(sql1).fetchone()[0]
-    sql2 = text("INSERT INTO Teachers (name, grade, review_id) VALUES (:name, :grade, :review_id)")
-    sql3 = text("INSERT INTO Material (grade, review_id) VALUES (:grade, :review_id)")
-    sql4 = text("INSERT INTO Workload (grade, review_id) VALUES (:grade, :review_id)")
-    sql5 = text("INSERT INTO Review_messages (review_id, message) VALUES (:review_id, :message)")
+    try:    
+        sql2 = text("INSERT INTO Teachers (name, grade, review_id) VALUES (:name, :grade, :review_id)")
+        sql3 = text("INSERT INTO Material (grade, review_id) VALUES (:grade, :review_id)")
+        sql4 = text("INSERT INTO Workload (grade, review_id) VALUES (:grade, :review_id)")
+        sql5 = text("INSERT INTO Review_messages (review_id, message) VALUES (:review_id, :message)")
 
-    if type(review_data[0]) is list:
-        for list_teacher_name in review_data[0]:
-            list_teacher_name = list_teacher_name.upper()
-            db.session.execute(sql2, {"name":list_teacher_name,\
+        if type(review_data[0]) is list:
+            for list_teacher_name in review_data[0]:
+                list_teacher_name = list_teacher_name.upper()
+                db.session.execute(sql2, {"name":list_teacher_name,\
+                    "grade":review_data[1], "review_id":reference})
+
+        else:
+            teacher_name = review_data[0].upper()
+            db.session.execute(sql2, {"name":teacher_name,\
                 "grade":review_data[1], "review_id":reference})
 
-    else:
-        teacher_name = review_data[0].upper()
-        db.session.execute(sql2, {"name":teacher_name,\
-            "grade":review_data[1], "review_id":reference})
-
-    db.session.execute(sql3, {"grade":review_data[2], "review_id":reference})
-    db.session.execute(sql4, {"grade":review_data[3], "review_id":reference})
-    db.session.execute(sql5, {"review_id":reference, "message":review_data[4]})
-    db.session.commit()
+        db.session.execute(sql3, {"grade":review_data[2], "review_id":reference})
+        db.session.execute(sql4, {"grade":review_data[3], "review_id":reference})
+        db.session.execute(sql5, {"review_id":reference, "message":review_data[4]})
+        db.session.commit()
+        return True
+    except:
+        exeption = text("DELETE FROM Reviews WHERE id=:review_id")
+        db.session.execute(exeption, {"review_id":reference})
+        db.session.commit()
+        return False
 
 
 # FUNCTION TO DELETE A COURSE AND
