@@ -95,7 +95,7 @@ def result():
 
         review_data = []
         teacher_name = request.form["teacher_name"]
-        
+
         try:
             if re.search(r"\S[A-z]+ [A-z]+(, [A-z]+ [A-z]+)+", teacher_name):
                 teacher_name = list(set(re.search(\
@@ -114,9 +114,8 @@ def result():
         if database_control.add_review(course_id, review_data):
             return render_template("result.html", course_id=course_id,\
             course_name=course_name, review_data=review_data)
-        else:
-            error = True
-            return render_template("review.html", error=error)
+        error = True
+        return render_template("review.html", error=error)
 
 
 # ROUTE TO SEARCH RESULTS
