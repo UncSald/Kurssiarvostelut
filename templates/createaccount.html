@@ -29,15 +29,15 @@
     <form action="/newaccount" method="POST" onsubmit="return check(this)">
         <h1>Luo käyttäjätunnus</h1>
         <p>Tunnus:<br>
-        <input type="text" name="username"></p>
+        <input type="text" name="username" placeholder="Käyttäjätunnus"></p>
         {% if error %}
             <p>Käyttäjätunnus on jo olemassa</p>
         {% endif %}
         <p>Salasana:<br>
-            <input type="password" name="password"></p>
+            <input type="password" name="password" placeholder="Salasana (min. 8 merkkiä)"></p>
         
         <p>Syötä salasana uudelleen:<br>
-            <input type="password" name="password_check"></p>
+            <input type="password" name="password_check" placeholder="Salasana uudelleen"></p>
         <input type="submit" value="Kirjaudu">
         
     </form>
@@ -64,6 +64,11 @@ Vain aakkoset, numerot ja '_' kelpaavat.")
         }
         if (form.password.value.length==0) {
             alert("Salasana ei voi olla tyhjä");
+            return false;
+        }
+        if (form.password.value.length<8) {
+            alert("Salasana on liian lyhyt\n\
+Salasanan tulisi olla vähintään 8 merkkiä pitkä");
             return false;
         }
         if (/[ .:,;\/()[\]\{\}¤$£"'*¨^~`=+]+/.exec(form.password.value)) {
