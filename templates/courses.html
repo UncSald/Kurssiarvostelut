@@ -36,11 +36,15 @@
         <ul>
             {% if session.username %}
                 {% for course in courses %}
+                <li>
+                    {{ course[0] }}: {{ course[1] }}
                     <form id="form1" action="/search" method="POST">
-                        <li><button type="submit" name="{{ course[0] }}" value="course" class="btn-link">{{ course[0] }}: {{ course[1] }}</li>
+                        <button type="submit" name="{{ course[0] }}" value="course" class="btn-link"> Siirry kurssisivulle</button>
                         <input type="hidden" name="search_data" value="{{ course[0] }}">
                         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     </form>
+                </li>
+                    
                     {% if session.admin %}
                     <form action="/renamed" method="POST" onsubmit="return check(this)">
                         <textarea name="new_name" rows="1" cols="50"></textarea>
