@@ -1,25 +1,30 @@
 .header {
     text-align: center;
-    border-radius: 1em;
     background: rgb(120, 165, 183);
     font-weight: bold;
-    padding: 2em 1em;
-    font-size: 2em;
+    padding: 1em;
+    font-size: 150%;
 }
 body {
+    width: 90%;
     margin: auto;
     margin-bottom: 2em;
     max-width: 65em;
     font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
     background-image: url("https://gifdb.com/images/high/dancing-happy-bear-forest-bxh9g1noxeap6f6s.webp");
-    background-size: 10%;
+    background-size: 20%;
     background-repeat:repeat;   
     border-radius: 1em;
+}
+div {
+    border-radius: .3em;
+    background-color: rgb(45, 91, 40);
+    padding: 2em;
 }
 form{
     border-radius: 1em;
     display: grid;
-    grid-template-columns: 18em 40em;
+    grid-template-columns: 40% 60%;
     grid-column-gap: 0.3em;
     grid-row-gap: 1em;
     margin-bottom: 2em;
@@ -37,7 +42,7 @@ form #Send:hover{
 }
 input {
     grid-column-start: 1;
-    width: 5%;
+    width: 1.5em;
 }
 button{
     grid-column-start: 2;
@@ -48,14 +53,14 @@ button{
     border-radius: 1em;
     background: rgb(114,96,27)
 }
+button:hover{
+    background: rgb(135, 98, 9);
+}
 textarea{
     grid-column-start: 2;
     border: 3px solid rgb(37,89,31);
     border-radius: 0.5em;
     background: rgba(164, 153, 125, 0.537);
-}
-button:hover{
-    background: rgb(135, 98, 9);
 }
 ol li{
     background-color: rgb(89,58,14);
@@ -66,6 +71,11 @@ nav{
     border-radius: .5em;
     padding: 1em;
 }
+nav ul{
+    list-style: none;
+    display: inline-block;
+    padding: 1em;
+}
 nav li{
     display: inline-block;
     border-radius: .4em;
@@ -73,12 +83,10 @@ nav li{
     background-color: rgb(88, 62, 24);
 }
 a{
-    padding: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
     color: black;
 }
-div {
-    border-radius: .3em;
-    background-color: rgb(45, 91, 40);
-    padding: 1em;
-    padding-left: 3em;
+a:hover{
+    background-color: rgb(129,140,60);
 }

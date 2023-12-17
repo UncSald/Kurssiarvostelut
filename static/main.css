@@ -1,12 +1,10 @@
 .header {
+    align-content: center;
     text-align: center;
-    background: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZ4d2N5cDk2Mm5icXU5bWNkamhqaXV4czU0ZTRodmo2bmxldmN3ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/xYaF6AN3tSdb7Ml9UI/giphy.gif");
     background-color: rgb(169, 90, 206);
-    background-size: 25%;
-    background-repeat: no-repeat;
     font-weight: bold;
-    padding: 2em;
-    font-size: 2em;
+    padding: 1em;
+    font-size: 150%;
 }
 body {
     width: 90%;
@@ -17,30 +15,55 @@ body {
     font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
     background-image: url("https://media.tenor.com/OWavF62qCpEAAAAC/night-sky-tranquilo.gif");
     background-size: 10%;
-    background-repeat:repeat   
+    background-repeat:repeat;
 }
 div {
     border-radius: .3em;
     background-color: rebeccapurple;
+    padding: 2em;
+}
+nav{
+    text-align: center;
+    background-color: rgb(124, 39, 203);
+    border-radius: .5em;
     padding: 1em;
-    padding-left: 3em;
 }
 nav ul{
     list-style: none;
-    display: inline-block;
     padding: 1em;
+}
+nav ul li{
+    display: inline-block;
+    border-radius: .4em;
+    padding: .3em;
+    background-color: purple;
+}
+a{
+    padding-left: 3em;
+    padding-right: 3em;
+    color: black;
+}
+a:hover{
+    background-color: rgb(169, 90, 206);
+}
+ol li{
+    background-color: purple;
+}
+ul li{
+    padding: 1em;
+    background-color: purple;
 }
 form {
     float: none;
     margin: 1em;
     border-radius: .3em;
-    width: 40%;
+    width: 80%;
     background-color: rgb(169, 90, 206);
     padding: .4em;
+    font-size: 80%;
 }
 form input {
     border-radius: .3em;
-    width: 20%;
     background: rgb(169, 90, 206);
 }
 form input:hover{
@@ -53,45 +76,16 @@ textarea{
     width: 50%;
     background: rgb(169, 90, 206);
 }
-ol li{
-    background-color: purple;
-}
-ul li{
-    background-color: purple;
-}
-nav{
-    text-align: center;
-    background-color: rgb(124, 39, 203);
-    border-radius: .5em;
-    padding: 1em;
-}
-nav li{
-    display: inline-block;
-    border-radius: .4em;
-    padding: .3em;
-    background-color: purple;
-}
-a{
-    padding: 3em;
-    color: black;
-}
 p button{
     position: relative;
     display: block;
-    width: 20%;
+    padding: 1em;
     border-color: purple;
     border-radius: 1em;
     background-color: rgb(169, 90, 206);
 }
 button:hover {
     background-color: rgb(148, 79, 180);
-}
-li form{
-    float: none;
-    margin: .01em;
-    border-radius: .3em;
-    width: 100%;
-    padding: .01em;
 }
 form button {
     position: relative;
@@ -100,4 +94,11 @@ form button {
     border-color: purple;
     border-radius: 1em;
     background-color: rgb(169, 90, 206);
+}
+li form{
+    float: none;
+    margin: .01em;
+    border-radius: .3em;
+    width: 100%;
+    padding: .01em;
 }

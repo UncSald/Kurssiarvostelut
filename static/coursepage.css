@@ -1,19 +1,21 @@
-.header{
+.header {
+    align-content: center;
     text-align: center;
-    background: rgb(169, 90, 206);
+    background-color: rgb(169, 90, 206);
     font-weight: bold;
-    padding: 2em 1em;
-    font-size: 2em;
+    padding: 1em;
+    font-size: 150%;
 }
-body{
+body {
+    width: 90%;
     margin: auto;
     margin-bottom: 2em;
     max-width: 65em;
-    font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
     color: rgb(23, 0, 43);
+    font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
     background-image: url("https://media.tenor.com/OWavF62qCpEAAAAC/night-sky-tranquilo.gif");
     background-size: 10%;
-    background-repeat:repeat   
+    background-repeat:repeat;
 }
 div{
     display: block;
@@ -41,13 +43,15 @@ button{
 button:hover{
     background: rgb(148, 79, 180);
 }
-ol li{
-    background-color: purple;
-}
 nav{
     text-align: center;
     background-color: rgb(124, 39, 203);
     border-radius: .5em;
+    padding: 1em;
+}
+nav ul{
+    list-style: none;
+    display: inline-block;
     padding: 1em;
 }
 nav li{
@@ -57,6 +61,7 @@ nav li{
     background-color: purple;
 }
 a{
-    padding: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
     color: black;
 }
